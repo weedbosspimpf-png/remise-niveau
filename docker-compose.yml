@@ -1,0 +1,19 @@
+services:
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: edu_restart
+      POSTGRES_PASSWORD: edu_restart_dev
+      POSTGRES_DB: edu_restart
+    ports:
+      - "5432:5432"
+    volumes:
+      - edu_restart_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U edu_restart"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  edu_restart_pgdata:

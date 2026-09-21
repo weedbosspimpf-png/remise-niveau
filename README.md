@@ -25,12 +25,42 @@ apps/web           interface web (React/Vite, PWA offline-first)
 tools/ingestion    (Phase 2, non implémenté) — futur pipeline d'ingestion des programmes
 ```
 
-## Démarrage (développement)
+## Démarrage rapide (tester le MVP en local)
+
+Prérequis : Node ≥ 20, pnpm, et Docker (pour la base) — ou un PostgreSQL 16 déjà installé.
 
 ```bash
+git clone https://github.com/weedbosspimpf-png/remise-niveau.git
+cd remise-niveau
+git checkout claude/hopeful-meitner-g1jx8y   # ou main une fois la branche fusionnée
 pnpm install
-pnpm --filter @edu-restart/core test     # tests du domaine, sans base de données
+
+# 1. Base de données
+docker compose up -d postgres
+# (sans Docker : créez une base "edu_restart" sur un PostgreSQL 16 local et
+#  adaptez DATABASE_URL dans apps/api/.env en conséquence)
+
+# 2. API
+cp apps/api/.env.example apps/api/.env
+pnpm --filter @edu-restart/api run prisma:migrate   # crée les tables
+pnpm --filter @edu-restart/api run prisma:seed      # référentiel de test (Côte d'Ivoire, 6e, Maths)
+pnpm --filter @edu-restart/api run dev              # http://localhost:3000
+
+# 3. Front (dans un second terminal)
+pnpm --filter @edu-restart/web run dev              # http://localhost:5173
 ```
 
-L'API et le front sont documentés dans leurs dossiers respectifs au fur et à mesure de
-leur mise en place.
+Ouvrez ensuite **http://localhost:5173**, créez un compte (email + mot de passe),
+suivez l'onboarding, puis lancez un diagnostic sur "Mathématiques".
+
+## Tests automatisés
+
+```bash
+pnpm --filter @edu-restart/core test     # 41 tests, domaine pur, sans base de données
+pnpm --filter @edu-restart/api test      # 8 tests d'intégration, nécessite la base ci-dessus
+pnpm typecheck && pnpm lint              # sur tout le monorepo
+```
+
+## Structure des dossiers de code
+
+Voir `apps/api/README.md` pour les détails spécifiques à l'API.
