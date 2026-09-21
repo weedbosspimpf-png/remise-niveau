@@ -1,0 +1,350 @@
+// Schéma Prisma — traduction directe de docs/03-schema-donnees.md.
+// Toute évolution de ce fichier doit d'abord être reflétée dans ce document.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// Référentiel pédagogique (§5, §6, §8 du cahier des charges)
+// ─────────────────────────────────────────────────────────────────────────
+
+model Country {
+  id              String          @id @default(cuid())
+  isoCode         String          @unique
+  name            String
+  languages       String[]
+  educationSystems EducationSystem[]
+  userProfiles    UserProfile[]
+
+  @@map("country")
+}
+
+model EducationSystem {
+  id        String              @id @default(cuid())
+  countryId String
+  name      String
+  country   Country             @relation(fields: [countryId], references: [id], onDelete: Restrict)
+  programs  CurriculumProgram[]
+
+  @@map("education_system")
+}
+
+enum SourceType {
+  OFFICIAL
+  VERIFIED
+  SECONDARY
+  UNVERIFIED
+  OUTDATED
+}
+
+model CurriculumSource {
+  id                String               @id @default(cuid())
+  type              SourceType
+  organisme         String
+  url               String?
+  referenceDocument String?
+  recupereLe        DateTime?
+  programs          CurriculumProgram[]
+  ingestionJobs     CurriculumIngestionJob[]
+
+  @@map("source")
+}
+
+enum ProgramStatus {
+  DRAFT
+  VALIDATED
+  ARCHIVED
+}
+
+model CurriculumProgram {
+  id                 String            @id @default(cuid())
+  educationSystemId  String
+  schoolYear         String
+  versionLabel       String
+  sourceId           String
+  status             ProgramStatus     @default(DRAFT)
+  validatedAt        DateTime?
+  validatedBy        String?
+  createdAt          DateTime          @default(now())
+
+  educationSystem    EducationSystem   @relation(fields: [educationSystemId], references: [id], onDelete: Restrict)
+  source             CurriculumSource  @relation(fields: [sourceId], references: [id], onDelete: Restrict)
+  levels             Level[]
+
+  @@unique([educationSystemId, schoolYear, versionLabel])
+  @@map("curriculum_program")
+}
+
+model Level {
+  id        String   @id @default(cuid())
+  programId String
+  code      String
+  order     Int
+
+  program   CurriculumProgram @relation(fields: [programId], references: [id], onDelete: Restrict)
+  subjects  Subject[]
+  userDeclaredLevels UserProfile[] @relation("declared_level")
+  userEstimatedLevels UserSubjectLevel[] @relation("estimated_level")
+  userSubjectLevelDeclared UserSubjectLevel[] @relation("declared_level_per_subject")
+  diagnosticSessions DiagnosticSession[]
+  objectivesTargetingLevel UserObjective[] @relation("target_level")
+
+  @@unique([programId, code])
+  @@map("level")
+}
+
+model Subject {
+  id      String @id @default(cuid())
+  levelId String
+  code    String
+  name    String
+
+  level   Level    @relation(fields: [levelId], references: [id], onDelete: Restrict)
+  domains Domain[]
+  userSubjectLevels UserSubjectLevel[]
+  diagnosticSessions DiagnosticSession[]
+  objectivesTargetingSubject UserObjective[] @relation("target_subject")
+
+  @@unique([levelId, code])
+  @@map("subject")
+}
+
+model Domain {
+  id        String @id @default(cuid())
+  subjectId String
+  name      String
+  order     Int
+
+  subject     Subject      @relation(fields: [subjectId], references: [id], onDelete: Restrict)
+  competences Competence[]
+
+  @@map("domain")
+}
+
+model Competence {
+  id         String   @id @default(cuid())
+  domainId   String
+  code       String
+  name       String
+  difficulty Int      @default(1)
+  objectives String[]
+
+  domain               Domain                  @relation(fields: [domainId], references: [id], onDelete: Restrict)
+  requiredBy           Prerequisite[]           @relation("competence")
+  requires             Prerequisite[]           @relation("requiresCompetence")
+  userCompetenceStatus UserCompetenceStatus[]
+  diagnosticQuestions  DiagnosticQuestion[]
+
+  @@unique([domainId, code])
+  @@map("competence")
+}
+
+/// Arête du graphe de prérequis : `competence` requiert `requiresCompetence`.
+model Prerequisite {
+  id                    String @id @default(cuid())
+  competenceId          String
+  requiresCompetenceId  String
+
+  competence         Competence @relation("competence", fields: [competenceId], references: [id], onDelete: Cascade)
+  requiresCompetence Competence @relation("requiresCompetence", fields: [requiresCompetenceId], references: [id], onDelete: Cascade)
+
+  @@unique([competenceId, requiresCompetenceId])
+  @@index([requiresCompetenceId])
+  @@map("prerequisite")
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// Utilisateurs et profil pédagogique (§3, §9, §10, §12, §13)
+// ─────────────────────────────────────────────────────────────────────────
+
+model User {
+  id           String   @id @default(cuid())
+  email        String?  @unique
+  phone        String?  @unique
+  passwordHash String
+  createdAt    DateTime @default(now())
+  lastLoginAt  DateTime?
+
+  profile            UserProfile?
+  objectives         UserObjective[]
+  subjectLevels      UserSubjectLevel[]
+  competenceStatuses UserCompetenceStatus[]
+  diagnosticSessions DiagnosticSession[]
+
+  @@map("user")
+}
+
+model UserProfile {
+  userId          String   @id
+  countryId       String
+  langue          String
+  ageRange        String?
+  niveauDeclareId String?
+  objectifLibre   String?
+
+  user           User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  country        Country @relation(fields: [countryId], references: [id], onDelete: Restrict)
+  niveauDeclare  Level?  @relation("declared_level", fields: [niveauDeclareId], references: [id], onDelete: SetNull)
+
+  @@map("user_profile")
+}
+
+enum ObjectiveType {
+  RESUME_SCOLARITE
+  REMISE_A_NIVEAU
+  PREPARER_EXAMEN
+  RENFORCER_MATIERE
+  ATTEINDRE_NIVEAU
+  APPRENDRE_DEPUIS_BASES
+}
+
+model UserObjective {
+  id            String        @id @default(cuid())
+  userId        String
+  type          ObjectiveType
+  matiereId     String?
+  niveauCibleId String?
+  createdAt     DateTime      @default(now())
+
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  matiere      Subject? @relation("target_subject", fields: [matiereId], references: [id], onDelete: SetNull)
+  niveauCible  Level?   @relation("target_level", fields: [niveauCibleId], references: [id], onDelete: SetNull)
+
+  @@map("user_objective")
+}
+
+/// Niveau déclaré vs estimé, par matière (§12).
+model UserSubjectLevel {
+  id                String   @id @default(cuid())
+  userId            String
+  matiereId         String
+  niveauDeclareId   String
+  niveauEstimeId    String?
+  updatedAt         DateTime @updatedAt
+
+  user           User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  matiere        Subject @relation(fields: [matiereId], references: [id], onDelete: Restrict)
+  niveauDeclare  Level   @relation("declared_level_per_subject", fields: [niveauDeclareId], references: [id], onDelete: Restrict)
+  niveauEstime   Level?  @relation("estimated_level", fields: [niveauEstimeId], references: [id], onDelete: SetNull)
+
+  @@unique([userId, matiereId])
+  @@map("user_subject_level")
+}
+
+enum CompetenceStatus {
+  NOT_ASSESSED
+  WEAK
+  LEARNING
+  DEVELOPING
+  MASTERED
+  REQUIRES_REVIEW
+}
+
+/// Carte de compétences (§13). Une ligne par (utilisateur, compétence).
+model UserCompetenceStatus {
+  id                  String            @id @default(cuid())
+  userId              String
+  competenceId        String
+  status              CompetenceStatus  @default(NOT_ASSESSED)
+  scorePct            Int?
+  lastEvaluatedAt     DateTime?
+  consecutiveReviews  Int               @default(0)
+
+  user       User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  competence Competence @relation(fields: [competenceId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, competenceId])
+  @@index([userId, status])
+  @@map("user_competence_status")
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// Sessions de diagnostic (§11, §12)
+// ─────────────────────────────────────────────────────────────────────────
+
+enum DiagnosticSessionStatus {
+  IN_PROGRESS
+  COMPLETED
+  ABANDONED
+}
+
+model DiagnosticSession {
+  id          String                  @id @default(cuid())
+  userId      String
+  matiereId   String
+  niveauId    String
+  status      DiagnosticSessionStatus @default(IN_PROGRESS)
+  startedAt   DateTime                @default(now())
+  completedAt DateTime?
+
+  user      User                 @relation(fields: [userId], references: [id], onDelete: Cascade)
+  matiere   Subject              @relation(fields: [matiereId], references: [id], onDelete: Restrict)
+  niveau    Level                @relation(fields: [niveauId], references: [id], onDelete: Restrict)
+  questions DiagnosticQuestion[]
+
+  @@map("diagnostic_session")
+}
+
+model DiagnosticQuestion {
+  id                 String   @id @default(cuid())
+  sessionId          String
+  competenceId       String
+  ordrePresentation  Int
+  choix              Json?
+
+  session    DiagnosticSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  competence Competence        @relation(fields: [competenceId], references: [id], onDelete: Restrict)
+  answer     DiagnosticAnswer?
+
+  @@map("diagnostic_question")
+}
+
+model DiagnosticAnswer {
+  id                 String   @id @default(cuid())
+  questionId         String   @unique
+  reponseUtilisateur Json
+  estCorrecte        Boolean
+  tempsReponseMs     Int?
+  answeredAt         DateTime @default(now())
+
+  question DiagnosticQuestion @relation(fields: [questionId], references: [id], onDelete: Cascade)
+
+  @@map("diagnostic_answer")
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// Préparation Phase 2 — Curriculum Discovery Engine (§7). Schéma posé,
+// aucun job créé au MVP.
+// ─────────────────────────────────────────────────────────────────────────
+
+enum IngestionJobStatus {
+  DISCOVERED
+  DOWNLOADED
+  EXTRACTED
+  ANALYZED
+  STRUCTURED
+  PENDING_REVIEW
+  VALIDATED
+  REJECTED
+}
+
+model CurriculumIngestionJob {
+  id               String             @id @default(cuid())
+  sourceId         String
+  status           IngestionJobStatus @default(DISCOVERED)
+  rawDocumentUrl   String?
+  extractedPayload Json?
+  reviewedBy       String?
+  createdAt        DateTime           @default(now())
+  updatedAt        DateTime           @updatedAt
+
+  source CurriculumSource @relation(fields: [sourceId], references: [id], onDelete: Restrict)
+
+  @@map("curriculum_ingestion_job")
+}

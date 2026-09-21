@@ -1,0 +1,12 @@
+{
+  "extends": "../../packages/config/tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "declaration": false,
+    "declarationMap": false,
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "target": "ES2022"
+  },
+  "include": ["src", "prisma/seed.ts", "tests"]
+}
