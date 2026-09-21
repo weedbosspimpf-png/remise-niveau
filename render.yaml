@@ -1,0 +1,32 @@
+# Blueprint Render : API Fastify + PostgreSQL en un seul déploiement.
+# Sur render.com : "New" -> "Blueprint" -> connecter ce dépôt -> Render lit ce
+# fichier automatiquement -> "Apply".
+#
+# Voir docs/05-deploiement.md pour les étapes détaillées (y compris le
+# raccordement du front déployé sur Vercel).
+
+databases:
+  - name: edu-restart-db
+    plan: free
+    databaseName: edu_restart
+    user: edu_restart
+
+services:
+  - type: web
+    name: edu-restart-api
+    runtime: node
+    plan: free
+    region: frankfurt
+    # À adapter si ce code est fusionné sur une autre branche par défaut.
+    branch: claude/hopeful-meitner-g1jx8y
+    buildCommand: corepack enable && corepack prepare pnpm@10.33.0 --activate && pnpm install --frozen-lockfile && pnpm --filter @edu-restart/api exec prisma generate
+    startCommand: corepack enable && corepack prepare pnpm@10.33.0 --activate && pnpm --filter @edu-restart/api exec prisma migrate deploy && pnpm --filter @edu-restart/api run start
+    envVars:
+      - key: NODE_VERSION
+        value: 22.11.0
+      - key: DATABASE_URL
+        fromDatabase:
+          name: edu-restart-db
+          property: connectionString
+      - key: JWT_SECRET
+        generateValue: true

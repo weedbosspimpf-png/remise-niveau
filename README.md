@@ -14,6 +14,7 @@ Projet pilote : Côte d'Ivoire. Architecture conçue dès le départ pour être 
 - [`docs/02-architecture.md`](docs/02-architecture.md) — arborescence et responsabilité des modules
 - [`docs/03-schema-donnees.md`](docs/03-schema-donnees.md) — schéma de données
 - [`docs/04-risques-et-tests.md`](docs/04-risques-et-tests.md) — risques techniques et plan de tests
+- [`docs/05-deploiement.md`](docs/05-deploiement.md) — déployer l'API + PostgreSQL sur Render et brancher un front Vercel
 
 ## Structure
 
@@ -52,6 +53,12 @@ pnpm --filter @edu-restart/web run dev              # http://localhost:5173
 
 Ouvrez ensuite **http://localhost:5173**, créez un compte (email + mot de passe),
 suivez l'onboarding, puis lancez un diagnostic sur "Mathématiques".
+
+## Mise en ligne (API + base sur Render, front sur Vercel)
+
+Voir [`docs/05-deploiement.md`](docs/05-deploiement.md) — le fichier
+[`render.yaml`](render.yaml) à la racine permet un déploiement en un clic
+(Blueprint Render) de l'API et de sa base PostgreSQL.
 
 ## Tests automatisés
 
