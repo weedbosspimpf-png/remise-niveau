@@ -150,6 +150,7 @@ async function main() {
     create: { competenceId: compFractions.id, requiresCompetenceId: compOperations.id },
   });
 
+  // eslint-disable-next-line no-console -- script CLI, la sortie est le but de la fonction
   console.log("Seed terminé :", {
     pays: country.name,
     programme: `${program.versionLabel} (${program.schoolYear})`,
