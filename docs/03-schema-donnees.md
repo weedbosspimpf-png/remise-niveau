@@ -124,7 +124,7 @@ reviewed_by (fk user, nullable)
 created_at / updated_at
 ```
 
-Cette table existe dès le MVP (schéma seulement, aucun job créé) pour que l'arrivée du *Curriculum Discovery Engine* en Phase 2 n'exige pas de migration structurelle lourde — seulement de nouveaux workers qui y écrivent.
+Cette table existe dès le MVP (schéma seulement, aucun job créé) pour que l'arrivée du _Curriculum Discovery Engine_ en Phase 2 n'exige pas de migration structurelle lourde — seulement de nouveaux workers qui y écrivent.
 
 ## 8. Index et contraintes notables
 

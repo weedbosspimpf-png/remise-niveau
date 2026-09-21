@@ -82,15 +82,18 @@ remise-niveau/
 ## 2. Responsabilité de chaque module
 
 ### `packages/core` — le cœur pédagogique, indépendant de tout pays et de tout framework
+
 - **`referentiel/`** : modélise la hiérarchie Pays → Système éducatif → Programme (versionné) → Niveau → Matière → Domaine → Compétence → Prérequis (§5, §8, §14). Le graphe de prérequis détecte les cycles et calcule un ordre d'enseignement valide.
 - **`diagnostic/`** : `DiagnosticEngine` sélectionne des questions couvrant les compétences d'un niveau/matière, calcule un score par domaine et produit une carte de compétences avec les statuts `NOT_ASSESSED / WEAK / LEARNING / DEVELOPING / MASTERED / REQUIRES_REVIEW` (§11, §13).
 - **`parcours/`** : squelette d'interface pour le futur moteur de parcours (§15, tronqué dans le cahier des charges — non implémenté au MVP, seule l'interface `PathEngine` est posée pour ne pas bloquer l'extensibilité).
 - **`ports/`** : interfaces (`Clock`, `RandomSource`, `ReferentielRepository`) que les adaptateurs (`apps/api`) doivent implémenter. `core` ne connaît jamais Postgres, HTTP ou Node.
 
 ### `packages/schemas` — contrat de données partagé
+
 Schémas Zod utilisés à la fois par l'API (validation des requêtes), le front (formulaires) et, plus tard, par le pipeline d'ingestion. Évite la duplication de règles de validation.
 
 ### `apps/api` — adaptateur HTTP + persistance
+
 - **`prisma/`** : schéma relationnel, migrations versionnées, seed du référentiel pilote (Côte d'Ivoire).
 - **`modules/onboarding`** : création de profil, choix pays/niveau déclaré/objectif/matières (§9, §10).
 - **`modules/referentiel`** : exposition en lecture du référentiel pour alimenter les écrans.
@@ -98,10 +101,12 @@ Schémas Zod utilisés à la fois par l'API (validation des requêtes), le front
 - **`infra/`** : implémentations concrètes des ports de `core` (ex. `PrismaReferentielRepository`), seul endroit qui parle à la base de données.
 
 ### `apps/web` — interface utilisateur
+
 Écrans onboarding, diagnostic, carte de compétences. `core` est aussi importé côté client (même paquet TypeScript) pour permettre un diagnostic hors-ligne dès que le référentiel est mis en cache localement (Dexie).
 
 ### `tools/ingestion` — non implémenté au MVP
-Dossier réservé au futur *Curriculum Discovery Engine* (§7). Contient uniquement un README décrivant le pipeline et les statuts de source (`OFFICIAL/VERIFIED/SECONDARY/UNVERIFIED/OUTDATED`, §6) pour que le schéma de données en tienne compte dès maintenant, sans coder l'automatisation.
+
+Dossier réservé au futur _Curriculum Discovery Engine_ (§7). Contient uniquement un README décrivant le pipeline et les statuts de source (`OFFICIAL/VERIFIED/SECONDARY/UNVERIFIED/OUTDATED`, §6) pour que le schéma de données en tienne compte dès maintenant, sans coder l'automatisation.
 
 ## 3. Pourquoi cette séparation
 
