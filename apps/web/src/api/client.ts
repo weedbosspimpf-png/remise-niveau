@@ -24,13 +24,17 @@ interface RequestOptions {
 }
 
 export async function apiFetch<T>(path: string, options: RequestOptions = {}): Promise<T> {
+  const hasBody = options.body !== undefined;
+
   const response = await fetch(`${API_BASE_URL}${path}`, {
     method: options.method ?? "GET",
     headers: {
-      "content-type": "application/json",
+      // N'annoncer un corps JSON que s'il y en a réellement un : sinon Fastify
+      // rejette la requête (content-type JSON + corps vide = erreur serveur).
+      ...(hasBody ? { "content-type": "application/json" } : {}),
       ...(options.token ? { authorization: `Bearer ${options.token}` } : {}),
     },
-    body: options.body !== undefined ? JSON.stringify(options.body) : undefined,
+    body: hasBody ? JSON.stringify(options.body) : undefined,
   });
 
   const isJson = response.headers.get("content-type")?.includes("application/json");

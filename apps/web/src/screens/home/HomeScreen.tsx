@@ -30,19 +30,19 @@ export function HomeScreen() {
         {subjects.map((subject) => (
           <div
             key={subject.id}
-            className="flex items-center justify-between rounded-xl border border-slate-200 bg-white p-4 shadow-sm"
+            className="flex flex-col gap-3 rounded-xl border border-slate-200 bg-white p-4 shadow-sm"
           >
             <span className="font-medium text-slate-800">{subject.name}</span>
             <div className="flex gap-2">
               <Link
                 to={`/competence-map/${subject.id}`}
-                className="rounded-lg border border-slate-300 px-3 py-1.5 text-sm font-medium text-slate-600 hover:bg-slate-50"
+                className="flex-1 rounded-lg border border-slate-300 px-3 py-1.5 text-center text-sm font-medium text-slate-600 hover:bg-slate-50"
               >
                 Progression
               </Link>
               <Link
                 to={`/diagnostic/${subject.id}/${niveauId}`}
-                className="rounded-lg bg-indigo-600 px-3 py-1.5 text-sm font-semibold text-white hover:bg-indigo-700"
+                className="flex-1 rounded-lg bg-indigo-600 px-3 py-1.5 text-center text-sm font-semibold text-white hover:bg-indigo-700"
               >
                 Diagnostiquer
               </Link>
