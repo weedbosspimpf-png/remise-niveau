@@ -23,7 +23,11 @@ services:
     # vérification de signature ("Cannot find matching keyid") sur certains
     # environnements de build, y compris Render au moment où ceci a été écrit.
     buildCommand: npm install -g pnpm@10.33.0 && pnpm install --frozen-lockfile && pnpm --filter @edu-restart/api exec prisma generate
-    startCommand: npm install -g pnpm@10.33.0 && pnpm --filter @edu-restart/api exec prisma migrate deploy && pnpm --filter @edu-restart/api run start
+    # Le seed est inclus ici (plutôt que lancé une fois via le Shell Render)
+    # car l'accès Shell n'est pas disponible sur le plan Free. Sans danger de
+    # le relancer à chaque démarrage : prisma/seed.ts n'utilise que des
+    # upsert, donc c'est un no-op après la première exécution.
+    startCommand: npm install -g pnpm@10.33.0 && pnpm --filter @edu-restart/api exec prisma migrate deploy && pnpm --filter @edu-restart/api run prisma:seed && pnpm --filter @edu-restart/api run start
     envVars:
       - key: NODE_VERSION
         value: 22.11.0

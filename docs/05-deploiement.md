@@ -32,13 +32,14 @@ un service web (l'API) et une base PostgreSQL, reliés automatiquement.
      compiler l'API en JS pour le déploiement).
 5. Une fois "Live", noter l'URL publique du service (ex.
    `https://edu-restart-api.onrender.com`).
-6. **Semer le référentiel de test** : dans le dashboard Render, onglet _Shell_
-   du service `edu-restart-api`, exécuter :
-   ```bash
-   pnpm --filter @edu-restart/api run prisma:seed
-   ```
-   Sans cette étape, la base est vide (migrations appliquées mais aucune
-   donnée) et l'onboarding ne proposera aucun pays/niveau/matière.
+
+Le seed du référentiel de test (§ci-dessous) est déjà inclus dans
+`startCommand` : il tourne automatiquement à chaque démarrage du service,
+avant le serveur. C'est nécessaire car l'onglet *Shell* de Render (qui
+permettrait de le lancer manuellement une seule fois) n'est pas disponible
+sur le plan **Free** — seulement à partir du plan Starter. `prisma/seed.ts`
+n'utilise que des `upsert`, donc le relancer à chaque démarrage ne crée
+jamais de doublons.
 
 `JWT_SECRET` est généré automatiquement par Render (`generateValue: true`) —
 ne pas le committer, ne pas le deviner.
