@@ -19,8 +19,11 @@ services:
     region: frankfurt
     # À adapter si ce code est fusionné sur une autre branche par défaut.
     branch: claude/hopeful-meitner-g1jx8y
-    buildCommand: corepack enable && corepack prepare pnpm@10.33.0 --activate && pnpm install --frozen-lockfile && pnpm --filter @edu-restart/api exec prisma generate
-    startCommand: corepack enable && corepack prepare pnpm@10.33.0 --activate && pnpm --filter @edu-restart/api exec prisma migrate deploy && pnpm --filter @edu-restart/api run start
+    # npm install -g pnpm (plutôt que corepack) : corepack a un bug connu de
+    # vérification de signature ("Cannot find matching keyid") sur certains
+    # environnements de build, y compris Render au moment où ceci a été écrit.
+    buildCommand: npm install -g pnpm@10.33.0 && pnpm install --frozen-lockfile && pnpm --filter @edu-restart/api exec prisma generate
+    startCommand: npm install -g pnpm@10.33.0 && pnpm --filter @edu-restart/api exec prisma migrate deploy && pnpm --filter @edu-restart/api run start
     envVars:
       - key: NODE_VERSION
         value: 22.11.0
