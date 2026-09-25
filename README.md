@@ -33,7 +33,7 @@ Prérequis : Node ≥ 20, pnpm, et Docker (pour la base) — ou un PostgreSQL 16
 ```bash
 git clone https://github.com/weedbosspimpf-png/remise-niveau.git
 cd remise-niveau
-git checkout claude/hopeful-meitner-g1jx8y   # ou main une fois la branche fusionnée
+git checkout claude/tender-pascal-sahhft     # ou main une fois la branche fusionnée
 pnpm install
 
 # 1. Base de données
