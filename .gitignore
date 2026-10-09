@@ -10,3 +10,5 @@ coverage/
 apps/web/dist/
 apps/api/dist/
 packages/*/dist/
+
+.pub-60s-muet.tmp.mp4

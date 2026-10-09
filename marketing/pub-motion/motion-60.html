@@ -1,0 +1,468 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pub Hortan 60 s</title>
+<script src="config.js"></script>
+<link rel="stylesheet" href="style.css">
+<style>
+  .scene { opacity: 0; }
+  .big { position: absolute; left: 0; right: 0; text-align: center; font-family: "Inter Display", "Inter", sans-serif; font-weight: 900; letter-spacing: -.03em; line-height: 1; }
+  .or { color: var(--orange); }
+  .colonne { position: absolute; left: 80px; width: 470px; font-family: "Inter Display", "Inter", sans-serif; font-weight: 900; font-size: 92px; letter-spacing: -.03em; line-height: 1; }
+  .colonne div { position: absolute; left: 0; white-space: nowrap; }
+  .soustitre { position: absolute; left: 60px; right: 60px; top: 1150px; min-height: 130px; display: flex; align-items: center; justify-content: center; text-align: center; font-size: 40px; font-weight: 700; line-height: 1.25; color: var(--blanc); text-shadow: 0 3px 18px rgba(0,0,0,.9); }
+  .soustitre span { display: block; }
+  .soustitre b { color: var(--cyan); }
+  .coin { position: absolute; left: 44px; top: 40px; display: flex; align-items: center; gap: 12px; font-family: "Montserrat", sans-serif; font-weight: 600; font-size: 26px; letter-spacing: .08em; }
+  .coin img { width: 56px; }
+
+  /* S0 */
+  #etincelle { position: absolute; left: 50%; top: 470px; width: 300px; height: 300px; margin: -150px 0 0 -150px; }
+  #halo { position: absolute; left: 50%; top: 470px; width: 900px; height: 900px; margin: -450px 0 0 -450px; border-radius: 50%; background: radial-gradient(circle, rgba(246,227,161,.55), rgba(212,175,90,.15) 35%, transparent 65%); }
+  /* S1 */
+  #rayons { position: absolute; left: 50%; top: 420px; width: 1600px; height: 1600px; margin: -800px 0 0 -800px; background: repeating-conic-gradient(from 0deg, rgba(232,200,116,.12) 0deg 6deg, transparent 6deg 18deg); border-radius: 50%; -webkit-mask: radial-gradient(circle, #000 20%, transparent 60%); mask: radial-gradient(circle, #000 20%, transparent 60%); }
+  #s1 .sym { position: absolute; left: 50%; top: 200px; width: 420px; margin-left: -210px; }
+  #s1 .nom { position: absolute; left: 0; right: 0; top: 600px; text-align: center; font-family: "Montserrat", sans-serif; font-weight: 600; font-size: 132px; color: var(--blanc); }
+  #s1 .ip { position: absolute; left: 0; right: 0; top: 760px; text-align: center; font-family: "Montserrat", sans-serif; font-weight: 500; font-size: 40px; letter-spacing: .14em; color: var(--orange); }
+  #s1 .transf { position: absolute; left: 0; right: 0; top: 880px; text-align: center; font-size: 44px; font-weight: 700; color: var(--gris); }
+  #s1 .transf b { display: block; font-family: "Inter Display", "Inter", sans-serif; font-size: 108px; font-weight: 900; letter-spacing: -.03em; margin-top: 6px; }
+  /* S2 téléphone */
+  #s2 .phone { left: 590px; margin-left: 0; top: 200px; }
+  .ecr { position: absolute; inset: 0; padding: 66px 22px 22px; }
+  .grille { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 16px; }
+  .prod { height: 230px; border-radius: 22px; background: #fff; padding: 12px; box-shadow: 0 6px 18px rgba(60,40,10,.1); }
+  .prod .img { height: 140px; border-radius: 14px; }
+  .prod i { display: block; height: 11px; border-radius: 6px; background: #e5dfcf; margin-top: 12px; }
+  .prod b { display: block; color: #8a6a2a; font-size: 18px; margin-top: 8px; }
+  .fiche .img { height: 330px; border-radius: 26px; background: linear-gradient(135deg, #f6e3a1, #b8903f); display: flex; align-items: center; justify-content: center; font-size: 120px; }
+  .fiche h3 { font-size: 30px; color: #14110a; margin: 22px 4px 6px; }
+  .fiche .px { font-size: 34px; font-weight: 900; color: #8a6a2a; margin: 0 4px; }
+  .gros-btn { position: absolute; left: 22px; right: 22px; bottom: 34px; height: 84px; border-radius: 42px; background: #14110a; color: #f6e3a1; font-size: 30px; font-weight: 800; display: flex; align-items: center; justify-content: center; }
+  .moyen { height: 92px; border-radius: 20px; background: #fff; margin-top: 16px; display: flex; align-items: center; gap: 16px; padding: 0 20px; font-size: 24px; font-weight: 700; color: #14110a; box-shadow: 0 6px 18px rgba(60,40,10,.08); border: 3px solid transparent; }
+  .moyen span { width: 50px; height: 50px; border-radius: 14px; }
+  .ok { position: absolute; left: 50%; top: 420px; width: 200px; height: 200px; margin-left: -100px; border-radius: 50%; background: #1f9d55; display: flex; align-items: center; justify-content: center; }
+  .ok-txt { position: absolute; left: 0; right: 0; top: 650px; text-align: center; font-size: 32px; font-weight: 900; color: #14110a; }
+  .doigt { position: absolute; width: 70px; height: 70px; border-radius: 50%; background: rgba(20,17,10,.35); border: 4px solid rgba(255,255,255,.9); z-index: 6; }
+  #notif2 { position: absolute; left: 70px; right: 70px; top: 60px; border-radius: 30px; background: rgba(251,246,234,.97); color: #14110a; padding: 26px 30px; display: flex; gap: 22px; align-items: center; box-shadow: 0 30px 80px rgba(0,0,0,.6); font-size: 32px; font-weight: 800; z-index: 8; }
+  #notif2 small { display: block; font-size: 24px; font-weight: 600; color: #6b5a33; margin-top: 4px; }
+  #notif2 .av { width: 76px; height: 76px; border-radius: 20px; background: linear-gradient(135deg, #f6e3a1, #b8903f); flex: none; display: flex; align-items: center; justify-content: center; font-size: 40px; }
+  #chrono { position: absolute; left: 80px; top: 760px; width: 300px; height: 300px; border-radius: 50%; border: 10px solid rgba(232,200,116,.25); display: flex; align-items: center; justify-content: center; flex-direction: column; }
+  #chrono b { font-family: "Inter Display", "Inter", sans-serif; font-size: 110px; font-weight: 900; color: var(--orange); line-height: 1; }
+  #chrono span { font-size: 26px; font-weight: 700; color: var(--gris); }
+  #chrono svg { position: absolute; inset: -10px; transform: rotate(-90deg); }
+  /* S3 site */
+  #s3 .browser { left: 80px; top: 200px; width: 860px; height: 560px; }
+  #mini { position: absolute; left: 790px; top: 470px; width: 220px; height: 440px; border-radius: 34px; background: #111; padding: 9px; box-shadow: 0 30px 80px rgba(0,0,0,.6); }
+  #mini .s { width: 100%; height: 100%; border-radius: 26px; background: #fff; overflow: hidden; padding: 30px 12px; }
+  #mini .h { height: 120px; border-radius: 14px; background: linear-gradient(120deg, #14110a, #b8903f); }
+  #mini i { display: block; height: 60px; border-radius: 12px; background: #f1ede2; margin-top: 12px; }
+  #recherche { position: absolute; left: 80px; top: 800px; width: 680px; border-radius: 28px; background: #fff; color: #14110a; padding: 26px 30px; box-shadow: 0 30px 80px rgba(0,0,0,.55); }
+  #recherche .barre { height: 60px; border-radius: 30px; border: 2px solid #e6e1d4; display: flex; align-items: center; padding: 0 24px; font-size: 24px; color: #5c5442; gap: 12px; }
+  #recherche .res { margin-top: 18px; display: flex; gap: 16px; align-items: center; }
+  #recherche .rang { width: 64px; height: 64px; border-radius: 16px; background: linear-gradient(135deg, #f6e3a1, #b8903f); font-weight: 900; font-size: 28px; display: flex; align-items: center; justify-content: center; flex: none; }
+  #recherche .res b { display: block; font-size: 26px; color: #1a4fb5; }
+  #recherche .res small { font-size: 20px; color: #2b7a3d; }
+  #ouvert { position: absolute; left: 640px; top: 120px; width: 340px; padding: 22px 26px; border-radius: 26px; background: #14110a; border: 3px solid var(--orange); display: flex; align-items: center; gap: 18px; box-shadow: 0 0 60px rgba(232,200,116,.45); }
+  #ouvert b { font-size: 34px; font-weight: 900; color: var(--orange); line-height: 1.05; }
+  #ouvert svg { width: 80px; height: 80px; flex: none; }
+  /* S4 fil */
+  #fil { position: absolute; left: 230px; top: 200px; width: 620px; height: 920px; border-radius: 40px; background: #1b1812; overflow: hidden; border: 3px solid rgba(255,255,255,.12); }
+  #filin { position: absolute; left: 20px; right: 20px; top: 0; }
+  .post { height: 340px; margin-top: 20px; border-radius: 24px; background: #2a261d; padding: 20px; }
+  .post .t { display: flex; gap: 12px; align-items: center; }
+  .post .t span { width: 48px; height: 48px; border-radius: 50%; background: #3d372a; }
+  .post .t i { width: 160px; height: 14px; border-radius: 7px; background: #3d372a; display: block; }
+  .post .m { height: 230px; border-radius: 16px; background: #3d372a; margin-top: 16px; }
+  .post.vedette { background: linear-gradient(135deg, #3a2d16, #14110a); border: 3px solid var(--orange); }
+  .post.vedette .m { background: radial-gradient(circle at 50% 45%, rgba(246,227,161,.35), transparent 60%), #14110a; display: flex; align-items: center; justify-content: center; position: relative; }
+  .play { width: 110px; height: 110px; border-radius: 50%; background: var(--orange); display: flex; align-items: center; justify-content: center; }
+  #stop { position: absolute; left: 0; right: 0; top: 520px; text-align: center; font-family: "Inter Display", "Inter", sans-serif; font-weight: 900; font-size: 200px; letter-spacing: -.04em; color: var(--blanc); text-shadow: 0 10px 60px rgba(0,0,0,.8); }
+  /* S5 atouts */
+  .atout { position: absolute; left: 90px; right: 90px; height: 210px; border-radius: 34px; background: rgba(255,255,255,.06); border: 2px solid rgba(232,200,116,.35); display: flex; align-items: center; gap: 40px; padding: 0 50px; }
+  .atout svg { width: 110px; height: 110px; flex: none; }
+  .atout b { font-family: "Inter Display", "Inter", sans-serif; font-size: 76px; font-weight: 900; letter-spacing: -.03em; }
+  /* S6 tarifs */
+  .tarif { position: absolute; left: 90px; right: 90px; height: 230px; border-radius: 34px; background: linear-gradient(120deg, rgba(232,200,116,.16), rgba(255,255,255,.04)); border: 2px solid rgba(232,200,116,.5); display: flex; align-items: center; justify-content: space-between; padding: 0 50px; }
+  .tarif .q { font-size: 44px; font-weight: 800; line-height: 1.1; }
+  .tarif .q small { display: block; font-size: 28px; font-weight: 600; color: var(--gris); margin-top: 6px; }
+  .tarif .p { text-align: right; font-family: "Inter Display", "Inter", sans-serif; font-weight: 900; color: var(--orange); font-size: 96px; letter-spacing: -.03em; line-height: 1; }
+  .tarif .p small { display: block; font-family: "Inter", sans-serif; font-size: 30px; font-weight: 700; letter-spacing: .1em; color: var(--rose); margin-top: 4px; }
+  /* S7 final */
+  #s7 .sym { position: absolute; left: 50%; top: 130px; width: 340px; margin-left: -170px; }
+  #s7 .nom { position: absolute; left: 0; right: 0; top: 470px; text-align: center; font-family: "Montserrat", sans-serif; font-weight: 600; font-size: 124px; color: var(--blanc); }
+  #s7 .ip { position: absolute; left: 0; right: 0; top: 620px; text-align: center; font-family: "Montserrat", sans-serif; font-weight: 500; font-size: 38px; letter-spacing: .14em; color: var(--orange); }
+  #s7 .cta { position: absolute; left: 50%; top: 760px; transform: translateX(-50%); padding: 34px 70px; border-radius: 999px; background: linear-gradient(90deg, var(--orange), var(--rose)); font-size: 52px; font-weight: 900; white-space: nowrap; color: var(--encre); box-shadow: 0 20px 70px rgba(212,175,90,.45); }
+  #s7 .contact { position: absolute; left: 0; right: 0; top: 960px; text-align: center; font-size: 46px; font-weight: 800; line-height: 1.55; }
+  #s7 .contact span { color: var(--cyan); font-size: 38px; }
+  #brille { position: absolute; left: 0; top: 0; width: 1080px; height: 760px; background: linear-gradient(105deg, transparent 40%, rgba(255,248,220,.16) 50%, transparent 60%); mix-blend-mode: screen; pointer-events: none; }
+</style>
+</head>
+<body>
+<div id="wrap"><div id="stage">
+  <div class="grid" id="grid"></div>
+  <div class="blob" id="b1" style="width:620px;height:620px;background:var(--violet)"></div>
+  <div class="blob" id="b2" style="width:520px;height:520px;background:var(--orange)"></div>
+  <div class="blob" id="b3" style="width:460px;height:460px;background:var(--rose)"></div>
+  <div id="particules"></div>
+
+  <!-- S0 : l'idée -->
+  <div class="scene" id="s0">
+    <div id="halo"></div>
+    <svg id="etincelle" viewBox="-100 -100 200 200"><path d="M0 -95 Q8 -8 95 0 Q8 8 0 95 Q-8 8 -95 0 Q-8 -8 0 -95 Z" fill="#f6e3a1"/></svg>
+    <div class="big" id="m0" style="top:760px;font-size:112px">Une idée ?</div>
+    <div class="big" id="m1" style="top:760px;font-size:112px">Un commerce ?</div>
+    <div class="big" id="m2" style="top:760px;font-size:112px">Un <span class="grad">projet</span> ?</div>
+  </div>
+
+  <!-- S1 : révélation du logo -->
+  <div class="scene" id="s1">
+    <div id="rayons"></div>
+    <img class="sym" id="s1sym" src="../logo/hortan-symbole.svg" alt="">
+    <div class="nom" id="s1nom">HORTAN</div>
+    <div class="ip" id="s1ip">INTELLIGENCE PLUS</div>
+    <div class="transf" id="s1tr">on la transforme en<b class="grad">application.</b></div>
+  </div>
+
+  <!-- S2 : applications -->
+  <div class="scene" id="s2">
+    <div class="colonne" id="col1" style="top:300px">
+      <div id="w0" style="top:0">Rapides.</div>
+      <div id="w1" style="top:120px">Belles.</div>
+      <div id="w2" style="top:240px" class="grad">Simples.</div>
+    </div>
+    <div class="colonne" id="col2" style="top:250px;font-size:74px">
+      <div id="v0" style="top:0">Ils trouvent.</div>
+      <div id="v1" style="top:100px">Commandent.</div>
+      <div id="v2" style="top:200px" class="grad">Paient.</div>
+    </div>
+    <div id="chrono"><svg viewBox="0 0 320 320"><circle id="arc" cx="160" cy="160" r="150" fill="none" stroke="#e8c874" stroke-width="10" stroke-linecap="round" stroke-dasharray="942" stroke-dashoffset="942"/></svg><b id="chiffre">0</b><span>secondes</span></div>
+    <div class="phone" id="tel"><div class="screen">
+      <div class="notch"></div>
+      <div class="ecr" id="ea">
+        <div class="app-head"><span>Bienvenue 👋</span><b>Ma Boutique</b></div>
+        <div class="grille">
+          <div class="prod" id="p0"><div class="img" style="background:linear-gradient(135deg,#f6e3a1,#d4af5a)"></div><i style="width:80%"></i><b>25 000 F</b></div>
+          <div class="prod" id="p1"><div class="img" style="background:linear-gradient(135deg,#3a2d16,#8a6a2a)"></div><i style="width:70%"></i><b>12 000 F</b></div>
+          <div class="prod" id="p2"><div class="img" style="background:linear-gradient(135deg,#b8903f,#14110a)"></div><i style="width:75%"></i><b>8 500 F</b></div>
+          <div class="prod" id="p3"><div class="img" style="background:linear-gradient(135deg,#e8c874,#8a6a2a)"></div><i style="width:60%"></i><b>30 000 F</b></div>
+        </div>
+      </div>
+      <div class="ecr fiche" id="eb">
+        <div class="img">👟</div>
+        <h3>Baskets Premium</h3>
+        <div class="px">25 000 FCFA</div>
+        <div class="gros-btn" id="bcmd">Commander</div>
+      </div>
+      <div class="ecr" id="ec">
+        <div class="app-head"><span>Paiement</span><b>25 000 FCFA</b></div>
+        <div class="moyen" id="mm0"><span style="background:#ff7a00"></span>Mobile Money</div>
+        <div class="moyen"><span style="background:#1aa0e8"></span>Portefeuille mobile</div>
+        <div class="moyen"><span style="background:#14110a"></span>Carte bancaire</div>
+        <div class="ok" id="ok"><svg viewBox="0 0 24 24" width="120" height="120"><path id="coche" d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="24" stroke-dashoffset="24"/></svg></div>
+        <div class="ok-txt" id="oktxt">Paiement réussi</div>
+      </div>
+      <div class="doigt" id="doigt"></div>
+    </div></div>
+    <div id="notif2"><div class="av">🛍️</div><div>Nouvelle commande !<small>25 000 FCFA reçus · à l'instant</small></div></div>
+  </div>
+
+  <!-- S3 : sites web -->
+  <div class="scene" id="s3">
+    <div class="browser" id="nav3">
+      <div class="bbar"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span><div class="url">https://www.votre-entreprise.com</div></div>
+      <div class="bnav" id="bn3"><div class="logo-b"></div><div class="menu"><i></i><i></i><i></i></div></div>
+      <div class="hero" id="hero3"><div class="bar" style="width:70%;height:34px"></div><div class="bar" style="width:48%;opacity:.6"></div><div class="btn">Découvrir</div></div>
+      <div class="cards">
+        <div class="card" id="c30"><div class="ic" style="background:var(--orange)"></div><i style="width:80%"></i><i style="width:55%"></i></div>
+        <div class="card" id="c31"><div class="ic" style="background:var(--violet)"></div><i style="width:75%"></i><i style="width:60%"></i></div>
+        <div class="card" id="c32"><div class="ic" style="background:var(--cyan)"></div><i style="width:85%"></i><i style="width:50%"></i></div>
+      </div>
+    </div>
+    <div id="mini"><div class="s"><div class="h"></div><i></i><i></i><i style="width:70%"></i></div></div>
+    <div id="recherche">
+      <div class="barre">🔍 <span id="req"></span></div>
+      <div class="res"><div class="rang">1<sup style="font-size:16px">er</sup></div><div><b>Votre Entreprise – Site officiel</b><small>www.votre-entreprise.com · ★★★★★</small></div></div>
+    </div>
+    <div id="ouvert"><svg viewBox="0 0 80 80"><circle cx="40" cy="40" r="34" fill="none" stroke="#e8c874" stroke-width="6"/><line id="aig1" x1="40" y1="40" x2="40" y2="18" stroke="#f6e3a1" stroke-width="6" stroke-linecap="round"/><line id="aig2" x1="40" y1="40" x2="56" y2="40" stroke="#e8c874" stroke-width="5" stroke-linecap="round"/></svg><b>Ouvert<br>24 h / 24</b></div>
+  </div>
+
+  <!-- S4 : motion design / fil d'actualité -->
+  <div class="scene" id="s4">
+    <div class="label" id="lab4" style="top:110px">MOTION DESIGN</div>
+    <div id="fil"><div id="filin"></div></div>
+    <div id="stop">STOP.</div>
+  </div>
+
+  <!-- S5 : atouts -->
+  <div class="scene" id="s5">
+    <div class="atout" id="a0" style="top:250px"><svg viewBox="0 0 24 24" fill="none" stroke="#e8c874" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.6 7.6"/><circle cx="11" cy="11" r="2"/></svg><b>Design<br>sur-mesure</b></div>
+    <div class="atout" id="a1" style="top:500px"><svg viewBox="0 0 24 24" fill="none" stroke="#e8c874" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg><b>Livraison<br>rapide</b></div>
+    <div class="atout" id="a2" style="top:750px"><svg viewBox="0 0 24 24" fill="none" stroke="#e8c874" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 13.4l-7.2 7.2a2 2 0 0 1-2.8 0L2 12V2h10l8.6 8.6a2 2 0 0 1 0 2.8z"/><circle cx="7" cy="7" r="1.5"/></svg><b class="grad">Prix<br>accessibles</b></div>
+  </div>
+
+  <!-- S6 : tarifs -->
+  <div class="scene" id="s6">
+    <div class="label" id="lab6" style="top:110px">NOS TARIFS</div>
+    <div class="tarif" id="t0" style="top:240px"><div class="q">🌐 Site web<small>vitrine, pro, responsive</small></div><div class="p"><small>DÈS</small><span id="n0">0</span> F</div></div>
+    <div class="tarif" id="t1" style="top:500px"><div class="q">📱 Application<small>iOS &amp; Android</small></div><div class="p"><small>DÈS</small><span id="n1">0</span> F</div></div>
+    <div class="tarif" id="t2" style="top:760px"><div class="q">🎬 Motion design<small>vidéo de 45 secondes</small></div><div class="p"><small>SEULEMENT</small><span id="n2">0</span> F</div></div>
+  </div>
+
+  <!-- S7 : appel à l'action -->
+  <div class="scene" id="s7">
+    <img class="sym" id="s7sym" src="../logo/hortan-symbole.svg" alt="">
+    <div class="nom" id="s7nom">HORTAN</div>
+    <div class="ip" id="s7ip">INTELLIGENCE PLUS</div>
+    <div id="brille"></div>
+    <div class="cta" id="s7cta"></div>
+    <div class="contact" id="s7ct"></div>
+  </div>
+
+  <div class="coin" id="coin"><img src="../logo/hortan-symbole.svg" alt="">HORTAN</div>
+  <div class="soustitre"><span id="st"></span></div>
+  <div class="flash" id="flash"></div>
+  <div id="progress"></div>
+</div></div>
+
+<script>
+const P = window.PUB;
+const $ = (id) => document.getElementById(id);
+const DUREE = 56;
+
+// Temps de la voix off (audio/voix-60.wav), en secondes.
+const V = {
+  idee: 0.30, commerce: 1.84, projet: 3.45, chez: 5.32, application: 7.4,
+  applis: 9.11, belles: 10.1, simples: 11.0, clients: 12.42, commandent: 13.2, paient: 14.0, secondes: 15.45,
+  sites: 17.20, telephone: 19.0, google: 20.4, vitrine: 22.39,
+  motion: 25.92, scroll: 27.14, design: 29.79, livraison: 31.05, prix: 32.4,
+  pSite: 33.64, pApp: 35.26, pMotion: 36.95, hortan: 40.49, devis: 42.64,
+};
+const SOUS = [
+  [0.30, 1.70, "Vous avez une idée…"],
+  [1.84, 3.30, "…un commerce…"],
+  [3.45, 5.15, "…un projet qui vous tient à cœur ?"],
+  [5.32, 8.90, "Chez <b>Hortan Intelligence Plus</b>, on la transforme en <b>application</b>."],
+  [9.11, 12.25, "Des applications mobiles <b>rapides</b>, <b>belles</b> et <b>simples</b> à utiliser."],
+  [12.42, 17.00, "Vos clients vous trouvent, commandent et paient… <b>en quelques secondes</b>."],
+  [17.20, 22.20, "Des sites web professionnels, modernes, parfaits sur téléphone, et <b>visibles sur Google</b>."],
+  [22.39, 25.70, "Votre vitrine, ouverte <b>24 h sur 24</b>."],
+  [25.92, 29.60, "Et pour vous faire remarquer : des vidéos en <b>motion design</b> qui arrêtent le scroll."],
+  [29.79, 33.40, "Design sur-mesure, livraison rapide… et des <b>prix accessibles</b> :"],
+];
+
+// Fond : particules dorées
+const parts = [];
+for (let i = 0; i < 38; i++) {
+  const d = document.createElement("div");
+  const r = (k) => { const x = Math.sin(i * 127.1 + k * 311.7) * 43758.5453; return x - Math.floor(x); };
+  const s = 3 + r(1) * 7;
+  d.style.cssText = `position:absolute;width:${s}px;height:${s}px;border-radius:50%;background:#f6e3a1;box-shadow:0 0 ${s * 3}px #e8c874`;
+  $("particules").appendChild(d);
+  parts.push({ d, x: r(2) * 1080, y: r(3) * 1350, v: 20 + r(4) * 60, ph: r(5) * 6.28, a: .25 + r(6) * .6 });
+}
+// Fil d'actualité
+for (let i = 0; i < 11; i++) {
+  const v = i === 8;
+  $("filin").insertAdjacentHTML("beforeend", `<div class="post${v ? " vedette" : ""}"><div class="t"><span${v ? ' style="background:linear-gradient(135deg,#f6e3a1,#b8903f)"' : ""}></span><i></i></div><div class="m">${v ? '<div class="play"><svg viewBox="0 0 24 24" width="56" height="56"><path d="M8 5v14l11-7z" fill="#14110a"/></svg></div>' : ""}</div></div>`);
+}
+$("s7cta").textContent = P.offre + " →";
+$("s7ct").innerHTML = "📞 " + P.telephone + (P.email ? "<br><span>✉️ " + P.email + "</span>" : "");
+
+// Outils
+const clamp = (x) => Math.max(0, Math.min(1, x));
+const prog = (t, a, b) => clamp((t - a) / (b - a));
+const easeOut = (x) => 1 - Math.pow(1 - x, 3);
+const easeInOut = (x) => x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
+const back = (x) => { const c = 1.70158, c3 = c + 1; return 1 + c3 * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); };
+const lerp = (a, b, x) => a + (b - a) * x;
+const pop = (t, a, d = .45) => back(prog(t, a, a + d));
+function set(el, o, tf) { el.style.opacity = o; if (tf !== undefined) el.style.transform = tf; }
+// Visibilité d'une scène avec fondu d'entrée/sortie
+function scene(id, t, a, b, f = .3) {
+  const el = $(id), vis = t > a - .01 && t < b + .01;
+  el.style.display = vis ? "" : "none";
+  if (!vis) return false;
+  el.style.opacity = Math.min(prog(t, a, a + f), 1 - prog(t, b - f, b));
+  return true;
+}
+const fmt = (n) => Math.round(n).toLocaleString("fr-FR").replace(/ | /g, " ");
+const prixNum = (s) => parseInt(String(s).replace(/\D/g, ""), 10) || 0;
+const NUM = [prixNum(P.prixSite), prixNum(P.prixApp), prixNum(P.prixMotion)];
+
+function renderAt(t) {
+  // Fond
+  $("b1").style.transform = `translate(${-150 + 120 * Math.sin(t * .4)}px, ${-120 + 80 * Math.cos(t * .3)}px)`;
+  $("b2").style.transform = `translate(${650 + 100 * Math.cos(t * .35)}px, ${700 + 120 * Math.sin(t * .3)}px)`;
+  $("b3").style.transform = `translate(${400 + 160 * Math.sin(t * .25 + 1)}px, ${300 + 200 * Math.cos(t * .4)}px)`;
+  $("grid").style.transform = `translateY(${(t * 20) % 60}px)`;
+  const pa = prog(t, 4.8, 5.6);
+  for (const p of parts) {
+    const y = ((p.y - t * p.v) % 1350 + 1350) % 1350;
+    p.d.style.transform = `translate(${p.x + Math.sin(t + p.ph) * 20}px, ${y}px)`;
+    p.d.style.opacity = p.a * (0.6 + 0.4 * Math.sin(t * 2 + p.ph)) * pa;
+  }
+  $("progress").style.width = (t / DUREE * 100) + "%";
+  let f = 0; for (const x of [V.chez, V.applis - .1, V.sites - .15, V.motion - .3, V.design - .15, V.pSite - .2, V.hortan - .2]) f = Math.max(f, 1 - Math.abs(t - x) / .14);
+  $("flash").style.opacity = clamp(f) * (t < 6 ? .9 : .3);
+  set($("coin"), .9 * prog(t, 9.0, 9.4) * (1 - prog(t, 40.0, 40.4)));
+
+  // Sous-titres
+  const st = SOUS.find(([a, b]) => t >= a && t <= b);
+  $("st").innerHTML = st ? st[2] : "";
+  if (st) { const p = easeOut(prog(t, st[0], st[0] + .25)); set($("st"), p * (1 - prog(t, st[1] - .15, st[1])), `translateY(${(1 - p) * 20}px)`); }
+
+  // S0 : 0 → 5,32
+  if (scene("s0", t, 0, V.chez, .01)) {
+    const g = lerp(.25, 1, easeOut(prog(t, 0, 5)));
+    const boom = easeInOut(prog(t, 4.9, V.chez));
+    $("etincelle").style.transform = `scale(${g * (1 + boom * 6)}) rotate(${t * 25}deg)`;
+    $("etincelle").style.opacity = clamp(t * 3);
+    $("halo").style.transform = `scale(${g * (1 + .08 * Math.sin(t * 5)) * (1 + boom * 3)})`;
+    $("halo").style.opacity = clamp(t * 2);
+    const mots = [[V.idee, V.commerce], [V.commerce, V.projet], [V.projet, V.chez]];
+    mots.forEach(([a, b], i) => {
+      const p = pop(t, a), s = easeInOut(prog(t, b - .2, b));
+      set($("m" + i), clamp(p * 2) * (1 - s), `translateY(${(1 - p) * 70 - s * 90}px) scale(${lerp(.7, 1, clamp(p))})`);
+    });
+  }
+
+  // S1 : 5,32 → 9,1
+  if (scene("s1", t, V.chez, V.applis, .15)) {
+    $("rayons").style.transform = `rotate(${t * 12}deg) scale(${lerp(.4, 1, easeOut(prog(t, V.chez, V.chez + .8)))})`;
+    const ps = pop(t, V.chez, .6);
+    set($("s1sym"), clamp(ps * 2), `scale(${lerp(.3, 1, ps)}) rotate(${(1 - clamp(ps)) * -20}deg)`);
+    const pn = easeOut(prog(t, V.chez + .3, V.chez + .9));
+    set($("s1nom"), pn); $("s1nom").style.letterSpacing = lerp(.6, .02, pn) + "em";
+    set($("s1ip"), easeOut(prog(t, V.chez + .6, V.chez + 1.1)));
+    const pt = easeOut(prog(t, V.chez + 1.3, V.chez + 1.8)), pa2 = pop(t, V.application, .5);
+    set($("s1tr"), pt, `translateY(${(1 - pt) * 30}px)`);
+    $("s1tr").querySelector("b").style.transform = `scale(${lerp(.6, 1, clamp(pa2))})`;
+    $("s1tr").querySelector("b").style.opacity = clamp(pa2 * 2);
+  }
+
+  // S2 : applications 9,1 → 17,1
+  if (scene("s2", t, V.applis - .1, V.sites - .1)) {
+    const pt = back(prog(t, V.applis - .1, V.applis + .5));
+    $("tel").style.transform = `translateY(${(1 - pt) * 700}px) rotate(${(1 - clamp(pt)) * 10 + Math.sin(t * 1.4) * 1.2}deg)`;
+    ["p0", "p1", "p2", "p3"].forEach((id, i) => { const p = pop(t, V.applis + .35 + i * .15, .4); set($(id), clamp(p * 2), `scale(${lerp(.5, 1, p)})`); });
+    [V.applis + .1, V.belles, V.simples].forEach((a, i) => { const p = pop(t, a, .4); set($("w" + i), clamp(p * 2) * (1 - prog(t, V.clients - .3, V.clients)), `translateX(${(1 - p) * -120}px)`); });
+    [V.clients, V.commandent, V.paient].forEach((a, i) => { const p = pop(t, a, .4); set($("v" + i), clamp(p * 2) * (1 - prog(t, 16.6, 17.0)), `translateX(${(1 - p) * -120}px)`); });
+    // Écrans : accueil → fiche → paiement
+    const s1 = easeInOut(prog(t, 12.45, 12.8)), s2 = easeInOut(prog(t, 13.75, 14.1));
+    $("ea").style.transform = `translateX(${-s1 * 100}%)`;
+    $("eb").style.transform = `translateX(${(1 - s1) * 100 - s2 * 100}%)`;
+    $("ec").style.transform = `translateX(${(1 - s2) * 100}%)`;
+    // Doigt : tape sur le produit, sur « Commander », puis sur le mode de paiement
+    const taps = [[11.9, 12.35, 90, 330], [13.0, 13.5, 180, 700], [14.25, 14.6, 120, 260]];
+    let dop = 0, dx = 0, dy = 0, press = 0;
+    for (const [a, b, x, y] of taps) if (t > a - .3 && t < b + .2) { dop = Math.min(prog(t, a - .3, a), 1 - prog(t, b, b + .2)); dx = x; dy = y; press = Math.sin(prog(t, a, b) * Math.PI); }
+    set($("doigt"), dop, `translate(${dx}px, ${dy}px) scale(${1 - press * .25})`);
+    $("p0").style.boxShadow = `0 0 0 ${Math.sin(prog(t, 11.9, 12.35) * Math.PI) * 10}px rgba(212,175,90,.6)`;
+    $("bcmd").style.transform = `scale(${1 - Math.sin(prog(t, 13.0, 13.5) * Math.PI) * .07})`;
+    $("mm0").style.borderColor = t > 14.4 ? "#d4af5a" : "transparent";
+    const ok = pop(t, 14.65, .45);
+    set($("ok"), clamp(ok * 2), `scale(${ok})`);
+    $("coche").style.strokeDashoffset = 24 * (1 - prog(t, 14.85, 15.2));
+    set($("oktxt"), prog(t, 15.0, 15.3));
+    // Notification + chrono
+    const pn = back(prog(t, V.secondes - .1, V.secondes + .35)) * (1 - easeInOut(prog(t, 16.7, 17.0)));
+    set($("notif2"), clamp(pn * 2), `translateY(${(1 - pn) * -260}px)`);
+    const pc = easeOut(prog(t, V.clients, V.clients + .4)) * (1 - prog(t, 16.6, 17.0));
+    set($("chrono"), pc, `scale(${lerp(.6, 1, pc)})`);
+    const ch = prog(t, V.clients + .2, V.secondes + .3);
+    $("chiffre").textContent = Math.max(1, Math.ceil(ch * 3));
+    $("arc").style.strokeDashoffset = 942 * (1 - ch);
+  }
+
+  // S3 : sites web 17,1 → 25,8
+  if (scene("s3", t, V.sites - .1, V.motion - .15)) {
+    const pb = back(prog(t, V.sites - .1, V.sites + .45));
+    set($("nav3"), clamp(pb * 2), `translateY(${(1 - pb) * 300}px) scale(${lerp(.75, 1, pb)})`);
+    set($("bn3"), prog(t, V.sites + .3, V.sites + .6));
+    const ph = pop(t, V.sites + .5); set($("hero3"), clamp(ph * 2), `scale(${lerp(.85, 1, ph)})`);
+    ["c30", "c31", "c32"].forEach((id, i) => { const p = pop(t, V.sites + .9 + i * .15); set($(id), clamp(p * 2), `translateY(${(1 - p) * 80}px)`); });
+    const pm = back(prog(t, V.telephone, V.telephone + .5));
+    set($("mini"), clamp(pm * 2), `translateX(${(1 - pm) * 300}px) rotate(${6 - (1 - clamp(pm)) * 10}deg)`);
+    const pr = back(prog(t, V.google - .3, V.google + .25));
+    set($("recherche"), clamp(pr * 2), `translateY(${(1 - pr) * 250}px)`);
+    const q = "création site web Abidjan";
+    $("req").textContent = q.slice(0, Math.floor(prog(t, V.google - .1, V.google + .8) * q.length));
+    $("recherche").querySelector(".res").style.opacity = prog(t, V.google + .85, V.google + 1.1);
+    const po = pop(t, V.vitrine + .2, .5);
+    set($("ouvert"), clamp(po * 2), `scale(${po}) rotate(${(1 - clamp(po)) * -8}deg)`);
+    $("aig1").setAttribute("transform", `rotate(${t * 220} 40 40)`);
+    $("aig2").setAttribute("transform", `rotate(${t * 18} 40 40)`);
+  }
+
+  // S4 : fil d'actualité 25,8 → 29,7
+  if (scene("s4", t, V.motion - .15, V.design - .1)) {
+    const pl = easeOut(prog(t, V.motion - .1, V.motion + .3));
+    set($("lab4"), pl, `translateX(-50%) translateY(${(1 - pl) * -30}px)`);
+    set($("fil"), pl, `scale(${lerp(.9, 1, pl)})`);
+    const fin = 8 * 360 - 280; // la vidéo vedette centrée
+    const ps = easeOut(prog(t, V.motion, V.scroll + .55));
+    const vitesse = Math.pow(1 - prog(t, V.motion, V.scroll + .55), 2);
+    $("filin").style.transform = `translateY(${-ps * fin}px)`;
+    $("filin").style.filter = `blur(${vitesse * 7}px)`;
+    const ved = $("filin").children[8];
+    const zoom = back(prog(t, V.scroll + .5, V.scroll + .9));
+    ved.style.transform = `scale(${1 + clamp(zoom) * .06})`;
+    ved.style.boxShadow = `0 0 ${zoom * 70}px rgba(232,200,116,.55)`;
+    const pst = back(prog(t, V.scroll + .7, V.scroll + 1.05));
+    set($("stop"), clamp(pst * 2) * (1 - prog(t, V.design - .4, V.design - .1)), `scale(${lerp(2.2, 1, clamp(pst))}) rotate(-6deg)`);
+  }
+
+  // S5 : atouts 29,7 → 33,5
+  if (scene("s5", t, V.design - .1, V.pSite - .15)) {
+    [V.design, V.livraison, V.prix].forEach((a, i) => {
+      const p = easeOut(prog(t, a, a + .25)), sh = Math.sin(prog(t, a + .22, a + .5) * Math.PI * 4) * (1 - prog(t, a + .22, a + .5)) * 8;
+      set($("a" + i), p, `scale(${lerp(1.7, 1, p)}) translateX(${sh}px)`);
+    });
+  }
+
+  // S6 : tarifs 33,5 → 40,3
+  if (scene("s6", t, V.pSite - .15, V.hortan - .2)) {
+    const pl = easeOut(prog(t, V.pSite - .15, V.pSite + .2));
+    set($("lab6"), pl, `translateX(-50%) translateY(${(1 - pl) * -30}px)`);
+    [V.pSite, V.pApp, V.pMotion].forEach((a, i) => {
+      const p = back(prog(t, a - .1, a + .4));
+      set($("t" + i), clamp(p * 2), `translateX(${(1 - p) * (i % 2 ? 900 : -900)}px)`);
+      $("n" + i).textContent = fmt(NUM[i] * easeOut(prog(t, a + .1, a + .9)));
+      $("t" + i).style.boxShadow = `0 0 ${Math.sin(prog(t, a + .8, a + 1.4) * Math.PI) * 60}px rgba(232,200,116,.5)`;
+    });
+  }
+
+  // S7 : final 40,3 → fin
+  if (scene("s7", t, V.hortan - .2, DUREE, .3)) {
+    const ps = pop(t, V.hortan - .1, .6);
+    set($("s7sym"), clamp(ps * 2), `scale(${lerp(.4, 1, ps)})`);
+    const pn = easeOut(prog(t, V.hortan + .1, V.hortan + .7));
+    set($("s7nom"), pn); $("s7nom").style.letterSpacing = lerp(.5, .02, pn) + "em";
+    set($("s7ip"), easeOut(prog(t, V.hortan + .4, V.hortan + .9)));
+    const pc = pop(t, V.devis - .1, .5), pulse = t > V.devis + .5 ? 1 + Math.sin((t - V.devis) * 5) * .03 : 1;
+    set($("s7cta"), clamp(pc * 2), `translateX(-50%) scale(${pc * pulse})`);
+    const pk = easeOut(prog(t, V.devis + .6, V.devis + 1.1));
+    set($("s7ct"), pk, `translateY(${(1 - pk) * 40}px)`);
+    const cyc = ((t - V.hortan) % 4) / 1.2;
+    $("brille").style.transform = `translateX(${lerp(-1100, 1100, clamp(cyc))}px)`;
+    $("stage").style.filter = `brightness(${1 - easeInOut(prog(t, DUREE - 1.2, DUREE)) })`;
+  } else $("stage").style.filter = "";
+}
+
+function fit() { const s = Math.min(innerWidth / 1080, innerHeight / 1350); $("wrap").style.transform = `scale(${s})`; }
+addEventListener("resize", fit); fit();
+window.renderAt = renderAt;
+window.DUREE = DUREE;
+if (!new URLSearchParams(location.search).has("capture")) {
+  const t0 = performance.now();
+  (function boucle(now) { renderAt(((now - t0) / 1000) % DUREE); requestAnimationFrame(boucle); })(t0);
+} else {
+  document.body.style.display = "block";
+  $("wrap").style.transform = "none";
+  renderAt(0);
+}
+</script>
+</body>
+</html>
