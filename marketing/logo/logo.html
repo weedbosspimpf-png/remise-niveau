@@ -1,21 +1,25 @@
 <!doctype html>
 <html lang="fr"><head><meta charset="utf-8"><title>Logo Hortan</title>
 <style>
-  :root { --bg: #0b0820; }
+  @font-face { font-family: "Montserrat"; font-weight: 500; src: url(../fonts/montserrat-500.woff2) format("woff2"); }
+  @font-face { font-family: "Montserrat"; font-weight: 600; src: url(../fonts/montserrat-600.woff2) format("woff2"); }
+  @font-face { font-family: "Montserrat"; font-weight: 700; src: url(../fonts/montserrat-700.woff2) format("woff2"); }
   * { margin: 0; box-sizing: border-box; }
-  body { background: transparent; font-family: "Inter Display", "Inter", sans-serif; }
-  .lock { display: inline-flex; align-items: center; gap: 40px; padding: 40px; }
-  .lock img { width: 260px; height: 260px; }
-  .txt b { display: block; font-weight: 900; font-size: 150px; letter-spacing: -.035em; line-height: .9; }
-  .txt span { display: block; font-weight: 700; font-size: 44px; letter-spacing: .32em; margin-top: 16px; }
-  .clair b { color: #fff; } .clair span { color: #22d3ee; }
-  .sombre b { color: #0b0820; } .sombre span { color: #7c3aed; }
-  .pile { display: inline-flex; flex-direction: column; align-items: center; gap: 36px; padding: 40px; text-align: center; }
-  .pile img { width: 300px; height: 300px; }
+  body { background: transparent; font-family: "Montserrat", sans-serif; }
+  .v { display: inline-flex; flex-direction: column; align-items: center; padding: 40px 50px; }
+  .v img { width: 380px; }
+  .v b { font-weight: 600; font-size: 150px; letter-spacing: .02em; line-height: 1; margin-top: 18px; }
+  .v span { font-weight: 500; font-size: 46px; letter-spacing: .14em; margin-top: 14px; }
+  .h { display: inline-flex; align-items: center; gap: 34px; padding: 30px 40px; }
+  .h img { width: 230px; }
+  .h b { display: block; font-weight: 600; font-size: 128px; letter-spacing: .02em; line-height: 1; }
+  .h span { display: block; font-weight: 500; font-size: 39px; letter-spacing: .14em; margin-top: 12px; }
+  .clair b { color: #f6ecd2; } .clair span { color: #d4af5a; }
+  .sombre b { color: #14110a; } .sombre span { color: #9a7530; }
 </style></head>
 <body>
-  <div id="horizontal-clair" class="lock clair"><img src="logo-icone.svg"><div class="txt"><b>HORTAN</b><span>INTELLIGENCE PLUS</span></div></div><br>
-  <div id="horizontal-sombre" class="lock sombre"><img src="logo-icone.svg"><div class="txt"><b>HORTAN</b><span>INTELLIGENCE PLUS</span></div></div><br>
-  <div id="vertical-clair" class="pile clair"><img src="logo-icone.svg"><div class="txt"><b>HORTAN</b><span>INTELLIGENCE PLUS</span></div></div>
-  <div id="vertical-sombre" class="pile sombre"><img src="logo-icone.svg"><div class="txt"><b>HORTAN</b><span>INTELLIGENCE PLUS</span></div></div>
+  <div id="vertical-clair" class="v clair"><img src="hortan-symbole.svg"><b>HORTAN</b><span>INTELLIGENCE PLUS</span></div>
+  <div id="vertical-sombre" class="v sombre"><img src="hortan-symbole.svg"><b>HORTAN</b><span>INTELLIGENCE PLUS</span></div><br>
+  <div id="horizontal-clair" class="h clair"><img src="hortan-symbole.svg"><div><b>HORTAN</b><span>INTELLIGENCE PLUS</span></div></div><br>
+  <div id="horizontal-sombre" class="h sombre"><img src="hortan-symbole.svg"><div><b>HORTAN</b><span>INTELLIGENCE PLUS</span></div></div>
 </body></html>

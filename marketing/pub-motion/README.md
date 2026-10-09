@@ -1,6 +1,6 @@
 # Pub motion design — sites web & applications
 
-Publicité de **15 secondes** + **affiche** au format 4:5 (1080×1350), adapté au fil Facebook / Instagram.
+Publicité de **15 secondes** + **affiche** pour **Hortan Intelligence Plus**, aux couleurs du logo (noir & or), format 4:5 (1080×1350) pour le fil Facebook / Instagram.
 
 | Fichier | Rôle |
 |---|---|

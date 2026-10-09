@@ -26,10 +26,10 @@
   .services { position: absolute; left: 80px; top: 1080px; display: flex; gap: 14px; flex-wrap: wrap; width: 640px; }
   .services span { padding: 12px 22px; border-radius: 999px; border: 2px solid rgba(255,255,255,.2); background: rgba(255,255,255,.06); font-size: 24px; font-weight: 700; }
   .bas { position: absolute; left: 0; right: 0; bottom: 0; height: 150px; background: rgba(255,255,255,.06); border-top: 2px solid rgba(255,255,255,.1); display: flex; align-items: center; justify-content: space-between; padding: 0 80px; }
-  .bas .marque { font-family: "Inter Display", "Inter", sans-serif; font-weight: 900; font-size: 44px; letter-spacing: -.02em; }
+  .bas .marque { height: 104px; }
   .bas .ct { text-align: right; font-size: 26px; font-weight: 700; line-height: 1.45; }
   .bas .ct span { color: var(--cyan); }
-  .pastille { position: absolute; right: 70px; top: 1110px; width: 230px; height: 230px; margin-top: -150px; border-radius: 50%; background: linear-gradient(135deg, var(--orange), var(--rose)); display: flex; align-items: center; justify-content: center; text-align: center; font-weight: 900; font-size: 36px; line-height: 1.05; transform: rotate(-10deg); box-shadow: 0 20px 60px rgba(255,61,129,.5); }
+  .pastille { position: absolute; right: 70px; top: 1110px; width: 230px; height: 230px; margin-top: -150px; border-radius: 50%; background: linear-gradient(135deg, var(--orange), var(--rose)); display: flex; align-items: center; justify-content: center; text-align: center; font-weight: 900; font-size: 36px; line-height: 1.05; transform: rotate(-10deg); color: var(--encre); box-shadow: 0 20px 60px rgba(212,175,90,.45); }
 </style>
 </head>
 <body>
@@ -72,17 +72,16 @@
   <div class="pastille" id="offre"></div>
 
   <div class="bas">
-    <div class="marque" id="marque"></div>
+    <img class="marque" src="../logo/png/hortan-horizontal-clair.png" alt="Hortan Intelligence Plus">
     <div class="ct" id="contact"></div>
   </div>
 </div></div>
 <script>
   const P = window.PUB, $ = (id) => document.getElementById(id);
   $("slogan").textContent = P.slogan;
-  $("url").textContent = "https://" + P.site;
-  $("marque").textContent = P.marque;
+  $("url").textContent = "https://www.votre-entreprise.com";
   $("offre").textContent = P.offre;
-  $("contact").innerHTML = "📞 " + P.telephone + "<br><span>" + P.site + "</span>";
+  $("contact").innerHTML = "📞 " + P.telephone + (P.site ? "<br><span>" + P.site + "</span>" : "");
   function fit() { const s = Math.min(1, innerWidth / 1080); $("wrap").style.transform = `scale(${s})`; }
   addEventListener("resize", fit); fit();
 </script>

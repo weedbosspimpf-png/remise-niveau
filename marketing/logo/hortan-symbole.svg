@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="60 60 680 610">
+  <defs>
+    <linearGradient id="or" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f6e3a1"/>
+      <stop offset=".45" stop-color="#d4af5a"/>
+      <stop offset="1" stop-color="#a07a32"/>
+    </linearGradient>
+    <path id="vague" d="M78 655 C110 540 200 470 330 432 C450 395 560 332 598 226 C588 335 500 425 400 468 C320 503 278 560 270 655 Z"/>
+    <mask id="coupe" maskUnits="userSpaceOnUse" x="0" y="0" width="800" height="720">
+      <rect width="800" height="720" fill="#fff"/>
+      <use href="#vague" fill="#000" stroke="#000" stroke-width="44" stroke-linejoin="round"/>
+    </mask>
+  </defs>
+  <g mask="url(#coupe)" fill="url(#or)">
+    <rect x="160" y="225" width="106" height="430"/>
+    <rect x="405" y="225" width="106" height="430"/>
+  </g>
+  <use href="#vague" fill="url(#or)"/>
+  <path d="M636 70 Q646 150 724 160 Q646 170 636 252 Q626 170 548 160 Q626 150 636 70 Z" fill="url(#or)"/>
+</svg>

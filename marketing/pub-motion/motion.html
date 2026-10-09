@@ -37,7 +37,7 @@
         <div class="card" id="c2"><div class="ic" style="background:var(--violet)"></div><i style="width:75%"></i><i style="width:60%"></i></div>
         <div class="card" id="c3"><div class="ic" style="background:var(--cyan)"></div><i style="width:85%"></i><i style="width:50%"></i></div>
       </div>
-      <svg class="cursor" id="cursor" viewBox="0 0 24 24"><path d="M3 2l7 19 2.5-7.5L20 11z" fill="#1a1050" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"/></svg>
+      <svg class="cursor" id="cursor" viewBox="0 0 24 24"><path d="M3 2l7 19 2.5-7.5L20 11z" fill="#14110a" stroke="#f6e3a1" stroke-width="1.5" stroke-linejoin="round"/></svg>
     </div>
     <div class="caption" id="cap2" style="top:1010px">Modernes. Rapides.<br><span class="grad">Responsive.</span></div>
   </div>
@@ -55,7 +55,7 @@
         <div class="item" id="i4"><div class="av" style="background:var(--rose)"></div><div style="flex:1"><i style="width:75%"></i><i style="width:35%"></i></div></div>
       </div>
       <div class="ecran" id="e2">
-        <div class="app-head" style="background:linear-gradient(135deg,#0ea5b7,#7c3aed)"><span>Statistiques</span><b>+128 %</b></div>
+        <div class="app-head" style="background:linear-gradient(135deg,#3a2d16,#b8903f)"><span>Statistiques</span><b>+128 %</b></div>
         <div class="chart" id="chart"><div></div><div></div><div></div><div></div><div></div></div>
       </div>
     </div></div>
@@ -67,21 +67,22 @@
   <div class="scene" id="s4">
     <div class="label" id="lab4">POURQUOI NOUS ?</div>
     <div class="tiles">
-      <div class="tile" id="t1"><svg viewBox="0 0 24 24" fill="none" stroke="#ff7a18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.6 7.6"/><circle cx="11" cy="11" r="2"/></svg><b>Design<br>sur-mesure</b></div>
-      <div class="tile" id="t2"><svg viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg><b>Livraison<br>rapide</b></div>
-      <div class="tile" id="t3"><svg viewBox="0 0 24 24" fill="none" stroke="#ff3d81" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg><b>Visible sur<br>Google</b></div>
-      <div class="tile" id="t4"><svg viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg><b>Motion<br>design</b></div>
+      <div class="tile" id="t1"><svg viewBox="0 0 24 24" fill="none" stroke="#d4af5a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.6 7.6"/><circle cx="11" cy="11" r="2"/></svg><b>Design<br>sur-mesure</b></div>
+      <div class="tile" id="t2"><svg viewBox="0 0 24 24" fill="none" stroke="#e8c874" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg><b>Livraison<br>rapide</b></div>
+      <div class="tile" id="t3"><svg viewBox="0 0 24 24" fill="none" stroke="#f6e3a1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg><b>Visible sur<br>Google</b></div>
+      <div class="tile" id="t4"><svg viewBox="0 0 24 24" fill="none" stroke="#b8903f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg><b>Motion<br>design</b></div>
     </div>
   </div>
 
   <!-- Scène 5 : appel à l'action -->
   <div class="scene" id="s5">
-    <div class="marque" id="marque"></div>
+    <div class="marque" id="marque"><img src="../logo/hortan-symbole.svg" alt=""><b id="marque-nom">HORTAN</b><span>INTELLIGENCE PLUS</span></div>
     <div class="slogan" id="slogan"></div>
     <div class="cta" id="cta"></div>
     <div class="contact" id="contact"></div>
   </div>
 
+  <div class="filigrane" id="filigrane"><img src="../logo/hortan-symbole.svg" alt="">HORTAN</div>
   <div class="flash" id="flash"></div>
   <div id="progress"></div>
 </div></div>
@@ -90,11 +91,10 @@
 const DUREE = 15;
 const P = window.PUB;
 const $ = (id) => document.getElementById(id);
-$("marque").textContent = P.marque;
 $("slogan").textContent = P.slogan;
 $("cta").textContent = P.offre + " →";
-$("contact").innerHTML = "📞 " + P.telephone + "<br><span>" + P.site + "</span>";
-const URL_TXT = P.site;
+$("contact").innerHTML = "📞 " + P.telephone + (P.site ? "<br><span>" + P.site + "</span>" : "");
+const URL_TXT = "www.votre-entreprise.com"; // le site du client, dans la maquette
 
 // Outils d'animation
 const clamp = (x) => Math.max(0, Math.min(1, x));
@@ -115,6 +115,7 @@ function renderAt(t) {
   $("b2").style.transform = `translate(${650 + 100 * Math.cos(t * .45)}px, ${700 + 120 * Math.sin(t * .35)}px)`;
   $("b3").style.transform = `translate(${400 + 160 * Math.sin(t * .3 + 1)}px, ${300 + 200 * Math.cos(t * .5)}px)`;
   $("grid").style.transform = `translateY(${(t * 20) % 60}px)`;
+  $("filigrane").style.opacity = .85 * (1 - easeInOut(prog(t, 12.1, 12.4))) * easeOut(prog(t, .2, .8));
   $("progress").style.width = (t / DUREE * 100) + "%";
 
   // Flash de transition
@@ -156,7 +157,7 @@ function renderAt(t) {
     const clic = prog(t, 5.55, 5.85);
     const pbt = back(prog(t, 4.2, 4.6));
     set($("hbtn"), clamp(pbt * 2), `scale(${pbt * (1 - Math.sin(clic * Math.PI) * .12)})`);
-    $("hbtn").style.boxShadow = `0 0 0 ${Math.sin(clic * Math.PI) * 18}px rgba(255,122,24,.35)`;
+    $("hbtn").style.boxShadow = `0 0 0 ${Math.sin(clic * Math.PI) * 18}px rgba(212,175,90,.4)`;
     ["c1", "c2", "c3"].forEach((id, i) => {
       const p = back(prog(t, 4.45 + i * .15, 4.9 + i * .15));
       set($(id), clamp(p * 2), `translateY(${(1 - p) * 80}px)`);
@@ -222,7 +223,7 @@ function renderAt(t) {
   if (s5) {
     const pm = easeOut(prog(t, 12.4, 13.0));
     set($("marque"), pm, `scale(${lerp(1.5, 1, pm)})`);
-    $("marque").style.letterSpacing = lerp(.4, -.03, pm) + "em";
+    $("marque-nom").style.letterSpacing = lerp(.5, .02, pm) + "em";
     $("marque").style.filter = `blur(${(1 - pm) * 14}px)`;
     const ps = easeOut(prog(t, 12.85, 13.3));
     set($("slogan"), ps, `translateY(${(1 - ps) * 30}px)`);
