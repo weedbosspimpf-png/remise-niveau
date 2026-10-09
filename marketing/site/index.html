@@ -108,6 +108,16 @@
   .tarif li::before { content: "✓"; color: var(--or); font-weight: 700; }
   .tarif .btn { justify-content: center; }
   .note { margin-top: 22px; color: var(--sable); font-size: .95rem; }
+  .conditions { margin-top: 28px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0; border: 1px solid var(--trait); border-radius: var(--r); background: rgba(22,20,15,.6); }
+  .conditions > div { padding: 26px 30px; display: grid; gap: 14px; align-content: start; min-width: 0; }
+  .conditions > div + div { border-left: 1px solid var(--trait); }
+  .conditions h3 { font-size: 1.05rem; font-weight: 700; }
+  .conditions ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; color: var(--sable); }
+  .conditions li { display: flex; gap: 12px; }
+  .conditions .oui li::before { content: "✓"; color: var(--or); font-weight: 700; }
+  .conditions .non li::before { content: "—"; color: var(--sable); }
+  .conditions p { margin: 0; font-size: .92rem; color: var(--or-clair); }
+  @media (max-width: 700px) { .conditions { grid-template-columns: minmax(0, 1fr); } .conditions > div + div { border-left: 0; border-top: 1px solid var(--trait); } }
 
   /* Méthode */
   .etapes { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px; counter-reset: e; }
@@ -241,7 +251,7 @@
       <div class="entete-section">
         <div class="sur-titre">Tarifs</div>
         <h2>Des prix clairs, en <span class="or-txt">FCFA</span></h2>
-        <p>Ce sont des prix de départ. Décrivez votre projet sur WhatsApp, on vous envoie un devis gratuit.</p>
+        <p>Ce sont des prix de départ pour la création. Décrivez votre projet sur WhatsApp, on vous envoie un devis gratuit.</p>
       </div>
       <div class="tarifs">
         <article class="tarif">
@@ -262,6 +272,26 @@
           <ul><li>Animation à vos couleurs</li><li>Musique et voix off</li><li>Prête pour Facebook et WhatsApp</li></ul>
           <a class="btn btn-ligne" data-wa="Bonjour Hortan, je voudrais une vidéo motion design de 45 secondes (15 000 FCFA)." href="#contact">Choisir</a>
         </article>
+      </div>
+      <div class="conditions" id="conditions">
+        <div>
+          <h3>Compris dans le prix</h3>
+          <ul class="oui">
+            <li>La conception et le design</li>
+            <li>Le développement de l'interface (front-end) : ce que vos clients voient et utilisent</li>
+            <li>Le développement du fonctionnement (back-end) : la logique et les fonctionnalités</li>
+          </ul>
+        </div>
+        <div>
+          <h3>À la charge du client</h3>
+          <ul class="non">
+            <li>L'hébergement du site ou de l'application</li>
+            <li>La base de données et le serveur</li>
+            <li>Le nom de domaine (ex. votre-entreprise.com)</li>
+            <li>Les comptes de publication Play Store et App Store, pour les applications</li>
+          </ul>
+          <p>On vous conseille et on vous aide à les mettre en place.</p>
+        </div>
       </div>
       <p class="note">La vidéo en haut de cette page est un exemple de notre motion design.</p>
     </div>
