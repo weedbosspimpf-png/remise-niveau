@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Hortan Intelligence Plus</title>
+<meta name="description" content="Sites web dès 15 000 FCFA, applications mobiles dès 50 000 FCFA et vidéos motion design. Devis gratuit au +225 07 09 70 60 28.">
+<meta property="og:title" content="Hortan Intelligence Plus">
+<meta property="og:description" content="Sites web, applications mobiles et motion design. Devis gratuit sur WhatsApp.">
+<meta property="og:image" content="pub-hortan.jpg">
+<link rel="icon" href="hortan-symbole.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Figtree:wght@400;500;600;700&display=swap">
+<style>
+  /* Mise en page : une seule colonne éditoriale noir & or, la vidéo de la pub comme « vitrine » du hero,
+     les tarifs en FCFA comme pièce maîtresse, contact WhatsApp partout. Charte volontairement sombre (logo). */
+  :root {
+    --nuit: #0b0a08;        /* fond */
+    --charbon: #16140f;     /* surfaces */
+    --trait: #2b261c;       /* bordures */
+    --ivoire: #f6efdc;      /* texte */
+    --sable: #b9ae93;       /* texte secondaire */
+    --or: #d4af5a;          /* accent */
+    --or-clair: #f1dc9c;
+    --or-fonce: #9a7530;
+    --encre: #14110a;       /* texte sur or */
+    --wa: #25d366;
+    --f-titre: "Montserrat", "Segoe UI", system-ui, sans-serif;
+    --f-texte: "Figtree", "Segoe UI", system-ui, sans-serif;
+    --r: 18px;
+    --largeur: 1120px;
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--nuit); color: var(--ivoire); font-family: var(--f-texte); font-size: 1.0625rem; line-height: 1.6; padding-inline: 20px; }
+  img, video { max-width: 100%; display: block; }
+  a { color: inherit; }
+  :focus-visible { outline: 3px solid var(--or-clair); outline-offset: 3px; border-radius: 6px; }
+  .contenu { max-width: var(--largeur); margin-inline: auto; }
+  h1, h2, h3 { font-family: var(--f-titre); line-height: 1.08; text-wrap: balance; margin: 0; }
+  h2 { font-size: clamp(1.9rem, 4.2vw, 2.9rem); font-weight: 800; letter-spacing: -.02em; }
+  .sur-titre { font-family: var(--f-titre); font-size: .78rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--or); }
+  .or-txt { background: linear-gradient(100deg, var(--or-clair), var(--or) 55%, var(--or-fonce)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  section { padding-block: clamp(64px, 9vw, 110px); }
+  .entete-section { display: grid; gap: 14px; max-width: 640px; margin-bottom: 44px; }
+  .entete-section p { margin: 0; color: var(--sable); }
+
+  /* Boutons */
+  .btn { display: inline-flex; align-items: center; gap: 10px; padding: 15px 26px; border-radius: 999px; font-family: var(--f-titre); font-weight: 700; font-size: .98rem; text-decoration: none; border: 2px solid transparent; transition: transform .15s ease, box-shadow .2s ease, background .2s; }
+  .btn:hover { transform: translateY(-2px); }
+  .btn-or { background: linear-gradient(100deg, var(--or-clair), var(--or)); color: var(--encre); box-shadow: 0 10px 30px -10px rgba(212,175,90,.6); }
+  .btn-ligne { border-color: var(--trait); color: var(--ivoire); }
+  .btn-ligne:hover { border-color: var(--or); }
+  .btn svg { width: 20px; height: 20px; flex: none; }
+
+  /* En-tête */
+  .barre { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; margin-inline: -20px; padding: 14px 20px; background: rgba(11,10,8,.82); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--trait); }
+  .barre .contenu { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+  .marque { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .marque img { width: 40px; height: auto; }
+  .marque b { display: block; font-family: var(--f-titre); font-weight: 600; font-size: 1.15rem; letter-spacing: .06em; line-height: 1; }
+  .marque small { display: block; font-family: var(--f-titre); font-size: .6rem; font-weight: 600; letter-spacing: .2em; color: var(--or); margin-top: 4px; }
+  .menu { display: flex; gap: 26px; align-items: center; }
+  .menu a { text-decoration: none; color: var(--sable); font-weight: 600; font-size: .95rem; }
+  .menu a:hover { color: var(--ivoire); }
+  .menu .btn { padding: 10px 18px; font-size: .88rem; color: var(--encre); }
+
+  /* Hero */
+  .hero { padding-block: clamp(48px, 7vw, 90px) clamp(56px, 8vw, 100px); }
+  .hero .contenu { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: clamp(32px, 5vw, 70px); align-items: center; }
+  .hero h1 { font-size: clamp(2.6rem, 6.4vw, 4.9rem); font-weight: 800; letter-spacing: -.035em; line-height: 1.0; margin-top: 18px; }
+  .hero .intro { font-size: 1.2rem; color: var(--sable); max-width: 34ch; margin: 22px 0 32px; }
+  .actions { display: flex; flex-wrap: wrap; gap: 12px; }
+  .prix-ligne { display: flex; flex-wrap: wrap; gap: 10px 28px; margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--trait); }
+  .prix-ligne div { display: grid; }
+  .prix-ligne span { font-size: .82rem; color: var(--sable); }
+  .prix-ligne b { font-family: var(--f-titre); font-size: 1.35rem; font-weight: 800; font-variant-numeric: tabular-nums; color: var(--or-clair); }
+  .ecran { position: relative; border-radius: 28px; padding: 10px; background: linear-gradient(160deg, #3a2f18, #14110a 40%, #2a2214); box-shadow: 0 40px 90px -30px rgba(212,175,90,.35), inset 0 0 0 1px rgba(241,220,156,.18); max-width: 440px; justify-self: center; width: 100%; }
+  .ecran video { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 20px; background: #000; }
+  .son { position: absolute; right: 22px; bottom: 22px; display: inline-flex; align-items: center; gap: 8px; padding: 9px 14px; border-radius: 999px; border: 0; background: rgba(11,10,8,.78); color: var(--ivoire); font: 600 .85rem var(--f-texte); cursor: pointer; }
+  .son:hover { background: rgba(11,10,8,.95); }
+
+  /* Services */
+  .services { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; border-top: 1px solid var(--trait); }
+  .service { padding: 34px 30px 34px 0; display: grid; gap: 14px; align-content: start; }
+  .service + .service { padding-left: 30px; border-left: 1px solid var(--trait); }
+  .service svg { width: 40px; height: 40px; }
+  .service h3 { font-size: 1.45rem; font-weight: 700; }
+  .service p { margin: 0; color: var(--sable); }
+  .service ul { margin: 6px 0 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+  .service li { display: flex; gap: 10px; }
+  .service li::before { content: ""; width: 7px; height: 7px; margin-top: .62em; transform: rotate(45deg); background: var(--or); flex: none; }
+
+  /* Tarifs */
+  #tarifs { background: radial-gradient(80% 60% at 50% 0%, rgba(212,175,90,.10), transparent 70%); margin-inline: -20px; padding-inline: 20px; }
+  .tarifs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+  .tarif { display: grid; grid-template-rows: auto auto 1fr auto; gap: 18px; padding: 30px; border-radius: var(--r); background: var(--charbon); border: 1px solid var(--trait); }
+  .tarif.vedette { border-color: var(--or); box-shadow: 0 30px 70px -40px rgba(212,175,90,.6); }
+  .tarif h3 { font-size: 1.15rem; font-weight: 700; }
+  .tarif .montant { font-family: var(--f-titre); font-weight: 800; letter-spacing: -.02em; font-variant-numeric: tabular-nums; line-height: 1; }
+  .tarif .montant small { display: block; font-size: .75rem; letter-spacing: .2em; color: var(--sable); margin-bottom: 8px; font-weight: 700; }
+  .tarif .montant span { font-size: clamp(2.3rem, 4vw, 2.9rem); color: var(--or-clair); }
+  .tarif .montant em { font-style: normal; font-size: 1rem; color: var(--or); margin-left: 6px; }
+  .tarif ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; color: var(--sable); align-content: start; }
+  .tarif li { display: flex; gap: 10px; }
+  .tarif li::before { content: "✓"; color: var(--or); font-weight: 700; }
+  .tarif .btn { justify-content: center; }
+  .note { margin-top: 22px; color: var(--sable); font-size: .95rem; }
+
+  /* Méthode */
+  .etapes { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px; counter-reset: e; }
+  .etape { display: grid; gap: 10px; align-content: start; counter-increment: e; }
+  .etape::before { content: counter(e); font-family: var(--f-titre); font-weight: 800; font-size: 1rem; width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center; border: 2px solid var(--or); color: var(--or-clair); }
+  .etape h3 { font-size: 1.15rem; font-weight: 700; }
+  .etape p { margin: 0; color: var(--sable); }
+
+  /* Réalisations */
+  .concepts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+  .concept { border-radius: var(--r); overflow: hidden; background: var(--charbon); border: 1px solid var(--trait); }
+  .concept .visuel { aspect-ratio: 4 / 3; max-width: 100%; position: relative; display: grid; place-items: center; }
+  .concept .tel { width: 38%; aspect-ratio: 9 / 18; border-radius: 18px; background: #f6f2e6; border: 6px solid #0b0a08; box-shadow: 0 20px 40px rgba(0,0,0,.5); padding: 14px 8px; display: grid; gap: 6px; align-content: start; }
+  .concept .tel i { display: block; border-radius: 6px; background: #e3dccb; height: 18px; }
+  .concept .tel i.h { height: 46px; background: linear-gradient(120deg, #14110a, #b8903f); }
+  .concept .txt { padding: 20px 22px 24px; display: grid; gap: 4px; }
+  .concept h3 { font-size: 1.05rem; font-weight: 700; }
+  .concept p { margin: 0; color: var(--sable); font-size: .95rem; }
+  .etiquette { position: absolute; top: 14px; left: 14px; font-size: .72rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; padding: 5px 10px; border-radius: 999px; background: rgba(11,10,8,.75); color: var(--or-clair); }
+
+  /* Contact */
+  .contact { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: 40px; align-items: center; padding: clamp(32px, 5vw, 60px); border-radius: 28px; background: linear-gradient(130deg, #2a2214, #14110a 55%); border: 1px solid rgba(212,175,90,.4); }
+  .contact h2 { font-size: clamp(1.9rem, 4vw, 2.8rem); }
+  .contact p { color: var(--sable); margin: 14px 0 26px; }
+  .coord { display: grid; gap: 12px; }
+  .coord div { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 16px 18px; border-radius: 14px; background: rgba(11,10,8,.6); border: 1px solid var(--trait); min-width: 0; }
+  .coord span { display: grid; min-width: 0; }
+  .coord small { color: var(--sable); font-size: .8rem; }
+  .coord b { font-weight: 700; overflow-wrap: anywhere; font-variant-numeric: tabular-nums; }
+  .copier { flex: none; border: 1px solid var(--trait); background: transparent; color: var(--or-clair); border-radius: 999px; padding: 7px 14px; font: 600 .82rem var(--f-texte); cursor: pointer; }
+  .copier:hover { border-color: var(--or); }
+
+  footer { padding-block: 40px 110px; color: var(--sable); font-size: .9rem; border-top: 1px solid var(--trait); }
+  footer .contenu { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; }
+
+  .wa-flottant { position: fixed; right: 18px; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); z-index: 30; width: 60px; height: 60px; border-radius: 50%; background: var(--wa); display: grid; place-items: center; box-shadow: 0 12px 30px rgba(0,0,0,.45); }
+  .wa-flottant svg { width: 32px; height: 32px; }
+
+  @media (max-width: 900px) {
+    .hero .contenu, .contact { grid-template-columns: minmax(0, 1fr); }
+    .menu a:not(.btn) { display: none; }
+    .services, .tarifs, .concepts { grid-template-columns: minmax(0, 1fr); }
+    .service, .service + .service { padding: 28px 0; border-left: 0; }
+    .service + .service { border-top: 1px solid var(--trait); }
+    .etapes { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 480px) {
+    .etapes { grid-template-columns: minmax(0, 1fr); }
+    .marque small { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .btn { transition: none; } }
+</style>
+</head>
+<body>
+
+<header class="barre">
+  <div class="contenu">
+    <a class="marque" href="#haut" aria-label="Hortan Intelligence Plus, accueil">
+      <img src="hortan-symbole.svg" alt="" width="40" height="36">
+      <span><b>HORTAN</b><small>INTELLIGENCE PLUS</small></span>
+    </a>
+    <nav class="menu" aria-label="Navigation">
+      <a href="#services">Services</a>
+      <a href="#tarifs">Tarifs</a>
+      <a href="#methode">Méthode</a>
+      <a href="#contact">Contact</a>
+      <a class="btn btn-or" data-wa="Bonjour Hortan, je voudrais un devis." href="#contact">Devis gratuit</a>
+    </nav>
+  </div>
+</header>
+
+<main id="haut">
+  <section class="hero">
+    <div class="contenu">
+      <div>
+        <div class="sur-titre">Studio digital · Côte d'Ivoire</div>
+        <h1>Votre idée mérite d'exister <span class="or-txt">en ligne.</span></h1>
+        <p class="intro">Sites web, applications mobiles et vidéos motion design. Rapides, beaux, professionnels, à des prix accessibles.</p>
+        <div class="actions">
+          <a class="btn btn-or" data-wa="Bonjour Hortan, je voudrais un devis gratuit pour mon projet." href="#contact">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.4 14.1c-.2.6-1.3 1.2-1.8 1.3-.5 0-1 .2-3.2-.7-2.7-1.1-4.4-3.8-4.5-4-.1-.2-1.1-1.4-1.1-2.7 0-1.3.7-1.9.9-2.2.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.6 2.1 1.1 1 2 1.3 2.3 1.4.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.7-.1l1.9.9c.3.1.5.2.5.3.1.2.1.8-.1 1.5Z"/></svg>
+            Demander un devis gratuit
+          </a>
+          <a class="btn btn-ligne" href="#tarifs">Voir les tarifs</a>
+        </div>
+        <div class="prix-ligne" aria-label="Prix de départ">
+          <div><span>Site web</span><b>dès 15 000 F</b></div>
+          <div><span>Application</span><b>dès 50 000 F</b></div>
+          <div><span>Motion design 45 s</span><b>15 000 F</b></div>
+        </div>
+      </div>
+      <div class="ecran">
+        <video id="pub" src="pub-hortan.mp4" poster="pub-hortan.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Vidéo de présentation Hortan Intelligence Plus"></video>
+        <button class="son" id="son" type="button" aria-pressed="false">🔇 Activer le son</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="contenu">
+      <div class="entete-section">
+        <div class="sur-titre">Ce que nous créons</div>
+        <h2>Tout ce qu'il faut pour vendre en ligne</h2>
+        <p>De la première maquette à la mise en ligne, on s'occupe de tout. Vous validez chaque étape.</p>
+      </div>
+      <div class="services">
+        <article class="service">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#d4af5a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="15" rx="2"/><path d="M2 8h20M6 6h.01M9 6h.01"/></svg>
+          <h3>Sites web</h3>
+          <p>Une vitrine professionnelle, ouverte 24 h sur 24, que vos clients trouvent sur Google.</p>
+          <ul><li>Parfait sur téléphone</li><li>Bouton WhatsApp et contact</li><li>Rapide à charger</li></ul>
+        </article>
+        <article class="service">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#d4af5a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg>
+          <h3>Applications mobiles</h3>
+          <p>Vos clients trouvent, commandent et paient en quelques secondes, depuis leur téléphone.</p>
+          <ul><li>Android et iOS</li><li>Design sur-mesure</li><li>Simple à utiliser</li></ul>
+        </article>
+        <article class="service">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#d4af5a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="14" height="14" rx="2"/><path d="M22 7l-6 5 6 5V7z"/></svg>
+          <h3>Motion design</h3>
+          <p>Des vidéos animées qui arrêtent le scroll sur Facebook, WhatsApp et Instagram.</p>
+          <ul><li>Vidéo de 45 secondes</li><li>Musique et voix off</li><li>Formats réseaux sociaux</li></ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="tarifs">
+    <div class="contenu">
+      <div class="entete-section">
+        <div class="sur-titre">Tarifs</div>
+        <h2>Des prix clairs, en <span class="or-txt">FCFA</span></h2>
+        <p>Ce sont des prix de départ. Décrivez votre projet sur WhatsApp, on vous envoie un devis gratuit.</p>
+      </div>
+      <div class="tarifs">
+        <article class="tarif">
+          <h3>Site web</h3>
+          <div class="montant"><small>DÈS</small><span>15 000</span><em>FCFA</em></div>
+          <ul><li>Site vitrine adapté au mobile</li><li>Vos services, photos et contacts</li><li>Bouton WhatsApp</li></ul>
+          <a class="btn btn-ligne" data-wa="Bonjour Hortan, je suis intéressé(e) par un site web (dès 15 000 FCFA)." href="#contact">Choisir</a>
+        </article>
+        <article class="tarif vedette">
+          <h3>Application mobile</h3>
+          <div class="montant"><small>DÈS</small><span>50 000</span><em>FCFA</em></div>
+          <ul><li>Android et iOS</li><li>Design sur-mesure à vos couleurs</li><li>Accompagnement jusqu'à la mise en ligne</li></ul>
+          <a class="btn btn-or" data-wa="Bonjour Hortan, je suis intéressé(e) par une application mobile (dès 50 000 FCFA)." href="#contact">Choisir</a>
+        </article>
+        <article class="tarif">
+          <h3>Motion design</h3>
+          <div class="montant"><small>VIDÉO DE 45 S</small><span>15 000</span><em>FCFA</em></div>
+          <ul><li>Animation à vos couleurs</li><li>Musique et voix off</li><li>Prête pour Facebook et WhatsApp</li></ul>
+          <a class="btn btn-ligne" data-wa="Bonjour Hortan, je voudrais une vidéo motion design de 45 secondes (15 000 FCFA)." href="#contact">Choisir</a>
+        </article>
+      </div>
+      <p class="note">La vidéo en haut de cette page est un exemple de notre motion design.</p>
+    </div>
+  </section>
+
+  <section id="methode">
+    <div class="contenu">
+      <div class="entete-section">
+        <div class="sur-titre">Méthode</div>
+        <h2>Comment ça se passe</h2>
+      </div>
+      <div class="etapes">
+        <div class="etape"><h3>Vous nous écrivez</h3><p>Sur WhatsApp ou par mail, vous expliquez votre idée en quelques mots.</p></div>
+        <div class="etape"><h3>Devis gratuit</h3><p>On vous propose une solution et un prix clair, sans engagement.</p></div>
+        <div class="etape"><h3>Maquette</h3><p>Vous voyez le résultat avant la fin et vous demandez les changements.</p></div>
+        <div class="etape"><h3>Livraison</h3><p>On met en ligne et on vous montre comment tout utiliser.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="realisations">
+    <div class="contenu">
+      <div class="entete-section">
+        <div class="sur-titre">Exemples</div>
+        <h2>Ce que nous pouvons faire pour vous</h2>
+        <p>Quelques idées de projets. Nos réalisations clients seront présentées ici.</p>
+      </div>
+      <div class="concepts">
+        <article class="concept">
+          <div class="visuel" style="background:linear-gradient(140deg,#3a2d16,#0b0a08)"><span class="etiquette">Concept</span><div class="tel"><i class="h"></i><i></i><i style="width:70%"></i><i></i></div></div>
+          <div class="txt"><h3>Boutique en ligne</h3><p>Catalogue, commande et paiement mobile.</p></div>
+        </article>
+        <article class="concept">
+          <div class="visuel" style="background:linear-gradient(140deg,#2a2214,#14110a)"><span class="etiquette">Concept</span><div class="tel"><i class="h"></i><i style="width:60%"></i><i></i><i></i></div></div>
+          <div class="txt"><h3>Restaurant</h3><p>Menu, réservation et livraison en un clic.</p></div>
+        </article>
+        <article class="concept">
+          <div class="visuel" style="background:linear-gradient(140deg,#3a2f18,#0b0a08)"><span class="etiquette">Concept</span><div class="tel"><i class="h"></i><i></i><i></i><i style="width:50%"></i></div></div>
+          <div class="txt"><h3>Prestataire de services</h3><p>Présentation, avis clients et prise de rendez-vous.</p></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="contenu">
+      <div class="contact">
+        <div>
+          <div class="sur-titre">Contact</div>
+          <h2>Parlons de votre projet</h2>
+          <p>Écrivez-nous sur WhatsApp : on répond rapidement, et le devis est gratuit.</p>
+          <a class="btn btn-or" data-wa="Bonjour Hortan, je voudrais un devis gratuit pour mon projet." href="https://wa.me/2250709706028" target="_blank" rel="noopener">Écrire sur WhatsApp</a>
+        </div>
+        <div class="coord">
+          <div><span><small>Téléphone et WhatsApp</small><b id="tel">+225 07 09 70 60 28</b></span><button class="copier" type="button" data-copie="tel">Copier</button></div>
+          <div><span><small>E-mail</small><b id="mail">hortanintelligence@gmail.com</b></span><button class="copier" type="button" data-copie="mail">Copier</button></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="contenu">
+    <span>© <span id="annee">2026</span> Hortan Intelligence Plus</span>
+    <span>Sites web · Applications · Motion design</span>
+  </div>
+</footer>
+
+<a class="wa-flottant" data-wa="Bonjour Hortan, je voudrais un devis gratuit." href="https://wa.me/2250709706028" target="_blank" rel="noopener" aria-label="Écrire sur WhatsApp">
+  <svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.4 14.1c-.2.6-1.3 1.2-1.8 1.3-.5 0-1 .2-3.2-.7-2.7-1.1-4.4-3.8-4.5-4-.1-.2-1.1-1.4-1.1-2.7 0-1.3.7-1.9.9-2.2.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.6 2.1 1.1 1 2 1.3 2.3 1.4.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.7-.1l1.9.9c.3.1.5.2.5.3.1.2.1.8-.1 1.5Z"/></svg>
+</a>
+
+<script>
+  // Numéro WhatsApp (format international, sans + ni espaces)
+  const WA = "2250709706028";
+  document.querySelectorAll("[data-wa]").forEach((a) => {
+    a.href = "https://wa.me/" + WA + "?text=" + encodeURIComponent(a.dataset.wa);
+    a.target = "_blank";
+    a.rel = "noopener";
+  });
+  // Son de la vidéo
+  const v = document.getElementById("pub"), b = document.getElementById("son");
+  b.addEventListener("click", () => {
+    v.muted = !v.muted;
+    if (!v.muted) { v.currentTime = 0; v.play().catch(() => {}); }
+    b.textContent = v.muted ? "🔇 Activer le son" : "🔊 Couper le son";
+    b.setAttribute("aria-pressed", String(!v.muted));
+  });
+  // Boutons « Copier »
+  document.querySelectorAll("[data-copie]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const el = document.getElementById(btn.dataset.copie), txt = el.textContent.trim();
+      const ok = () => { btn.textContent = "Copié"; setTimeout(() => (btn.textContent = "Copier"), 1800); };
+      const repli = () => { const r = document.createRange(); r.selectNodeContents(el); const s = getSelection(); s.removeAllRanges(); s.addRange(r); };
+      try { navigator.clipboard.writeText(txt).then(ok, repli); } catch { repli(); }
+    });
+  });
+  document.getElementById("annee").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
