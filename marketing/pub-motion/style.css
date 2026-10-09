@@ -80,7 +80,7 @@ body { display: flex; align-items: center; justify-content: center; overflow: hi
 .tile b { font-size: 40px; font-weight: 800; line-height: 1.1; letter-spacing: -.01em; }
 
 /* Final */
-#s5 .marque { position: absolute; left: 0; right: 0; top: 420px; text-align: center; font-family: "Inter Display", "Inter", sans-serif; font-weight: 900; font-size: 128px; letter-spacing: -.03em; line-height: 1; }
+#s5 .marque { position: absolute; left: 60px; right: 60px; top: 330px; text-align: center; font-family: "Inter Display", "Inter", sans-serif; font-weight: 900; font-size: 108px; letter-spacing: -.03em; line-height: 1; height: 220px; display: flex; align-items: flex-end; justify-content: center; text-align: center; }
 #s5 .slogan { position: absolute; left: 0; right: 0; top: 590px; text-align: center; font-size: 36px; font-weight: 600; color: var(--gris); }
 #s5 .cta { position: absolute; left: 50%; top: 720px; transform: translateX(-50%); padding: 34px 70px; border-radius: 999px; background: linear-gradient(90deg, var(--orange), var(--rose)); font-size: 50px; font-weight: 900; white-space: nowrap; box-shadow: 0 20px 70px rgba(255,61,129,.45); }
 #s5 .contact { position: absolute; left: 0; right: 0; top: 920px; text-align: center; font-size: 40px; font-weight: 700; line-height: 1.6; }
