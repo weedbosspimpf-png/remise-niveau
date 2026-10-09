@@ -11,3 +11,4 @@ apps/web/dist/
 apps/api/dist/
 packages/*/dist/
 beat/stems/
+beat/drill/stems/
