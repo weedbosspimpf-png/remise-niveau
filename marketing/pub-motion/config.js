@@ -6,7 +6,7 @@ window.PUB = {
   email: "hortanintelligence@gmail.com",
   site: "", // laisser vide s'il n'y a pas encore de site ; ex. "www.hortan.ci"
   offre: "Devis gratuit",
-  prixSite: "15 000 FCFA",
-  prixApp: "50 000 FCFA",
+  prixSite: "30 000 FCFA",
+  prixApp: "100 000 FCFA",
   prixMotion: "15 000 FCFA", // vidéo motion design de 45 s
 };
