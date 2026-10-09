@@ -1,0 +1,89 @@
+:root {
+  --bg1: #0b0820;
+  --bg2: #1a1050;
+  --violet: #7c3aed;
+  --cyan: #22d3ee;
+  --orange: #ff7a18;
+  --rose: #ff3d81;
+  --blanc: #ffffff;
+  --gris: #b9b4d6;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: #000; height: 100%; }
+body { display: flex; align-items: center; justify-content: center; overflow: hidden; font-family: "Inter", "Inter Display", system-ui, sans-serif; }
+#wrap { width: 1080px; height: 1350px; transform-origin: center; }
+#stage {
+  position: relative; width: 1080px; height: 1350px; overflow: hidden;
+  background: radial-gradient(120% 90% at 50% 0%, var(--bg2) 0%, var(--bg1) 60%);
+  color: var(--blanc);
+}
+.abs { position: absolute; }
+.blob { position: absolute; border-radius: 50%; filter: blur(90px); opacity: .55; }
+.grid {
+  position: absolute; inset: -100px;
+  background-image: linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+.grad { background: linear-gradient(90deg, var(--orange), var(--rose) 45%, var(--cyan)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.scene { position: absolute; inset: 0; }
+.label {
+  position: absolute; left: 50%; top: 120px; transform: translateX(-50%);
+  font-size: 30px; font-weight: 800; letter-spacing: .35em; color: var(--cyan);
+  padding: 14px 28px; border: 2px solid rgba(34,211,238,.5); border-radius: 999px; white-space: nowrap;
+}
+.caption { position: absolute; left: 0; right: 0; text-align: center; font-family: "Inter Display", "Inter", sans-serif; font-weight: 800; font-size: 64px; line-height: 1.1; letter-spacing: -.02em; }
+
+/* Scène 1 */
+#s1 .ligne { position: absolute; left: 0; right: 0; text-align: center; font-family: "Inter Display", "Inter", sans-serif; font-weight: 900; letter-spacing: -.03em; }
+#s1 .mot { display: inline-block; margin: 0 .12em; }
+
+/* Navigateur */
+.browser { position: absolute; left: 110px; top: 280px; width: 860px; height: 620px; border-radius: 28px; background: #fff; overflow: hidden; box-shadow: 0 40px 120px rgba(0,0,0,.55), 0 0 0 2px rgba(255,255,255,.1); }
+.bbar { height: 58px; background: #ece9f8; display: flex; align-items: center; gap: 12px; padding: 0 24px; }
+.dot { width: 16px; height: 16px; border-radius: 50%; }
+.url { margin-left: 18px; height: 30px; flex: 1; border-radius: 15px; background: #fff; color: #8a84a8; font-size: 17px; display: flex; align-items: center; padding-left: 18px; }
+.bnav { position: absolute; top: 58px; left: 0; right: 0; height: 70px; display: flex; align-items: center; justify-content: space-between; padding: 0 40px; }
+.logo-b { width: 120px; height: 26px; border-radius: 8px; background: linear-gradient(90deg, var(--violet), var(--rose)); }
+.menu { display: flex; gap: 22px; }
+.menu i { display: block; width: 64px; height: 12px; border-radius: 6px; background: #d9d4ee; }
+.hero { position: absolute; top: 150px; left: 40px; right: 40px; height: 230px; border-radius: 22px; background: linear-gradient(120deg, #1a1050, #7c3aed 70%, #ff3d81); padding: 40px; overflow: hidden; }
+.bar { height: 26px; border-radius: 13px; background: rgba(255,255,255,.9); margin-bottom: 16px; }
+.btn { position: absolute; left: 40px; bottom: 36px; width: 210px; height: 56px; border-radius: 28px; background: var(--orange); color: #fff; font-weight: 800; font-size: 22px; display: flex; align-items: center; justify-content: center; }
+.cards { position: absolute; top: 410px; left: 40px; right: 40px; display: flex; gap: 22px; }
+.card { flex: 1; height: 170px; border-radius: 20px; background: #f4f2fc; padding: 22px; }
+.card .ic { width: 52px; height: 52px; border-radius: 14px; margin-bottom: 20px; }
+.card i { display: block; height: 12px; border-radius: 6px; background: #d9d4ee; margin-bottom: 10px; }
+.cursor { position: absolute; width: 46px; height: 46px; }
+
+/* Téléphone */
+.phone { position: absolute; left: 50%; top: 260px; width: 400px; height: 800px; margin-left: -200px; border-radius: 60px; background: #111; padding: 16px; box-shadow: 0 40px 120px rgba(0,0,0,.6), 0 0 0 3px rgba(255,255,255,.12); }
+.screen { position: relative; width: 100%; height: 100%; border-radius: 46px; overflow: hidden; background: #f6f4ff; }
+.notch { position: absolute; top: 14px; left: 50%; width: 120px; height: 32px; margin-left: -60px; background: #111; border-radius: 16px; z-index: 5; }
+.ecran { position: absolute; inset: 0; padding: 70px 24px 24px; }
+.app-head { height: 150px; border-radius: 26px; background: linear-gradient(135deg, var(--violet), var(--rose)); padding: 24px; color: #fff; }
+.app-head b { font-size: 34px; display: block; margin-top: 10px; }
+.app-head span { font-size: 18px; opacity: .85; }
+.item { height: 92px; border-radius: 20px; background: #fff; margin-top: 16px; display: flex; align-items: center; gap: 16px; padding: 0 18px; box-shadow: 0 6px 18px rgba(60,40,140,.08); }
+.item .av { width: 56px; height: 56px; border-radius: 16px; flex: none; }
+.item i { display: block; height: 12px; border-radius: 6px; background: #ddd8f0; margin: 8px 0; }
+.chart { height: 330px; border-radius: 26px; background: #fff; margin-top: 18px; display: flex; align-items: flex-end; gap: 16px; padding: 26px; box-shadow: 0 6px 18px rgba(60,40,140,.08); }
+.chart div { flex: 1; border-radius: 10px 10px 4px 4px; background: linear-gradient(180deg, var(--cyan), var(--violet)); }
+.notif { position: absolute; left: 50%; top: 330px; width: 470px; margin-left: 30px; border-radius: 24px; background: rgba(255,255,255,.96); color: #1a1050; padding: 20px 24px; display: flex; gap: 16px; align-items: center; box-shadow: 0 25px 60px rgba(0,0,0,.4); font-size: 22px; font-weight: 700; }
+.notif small { display: block; font-weight: 500; color: #6b6590; font-size: 18px; margin-top: 4px; }
+.notif .av { width: 54px; height: 54px; border-radius: 16px; background: linear-gradient(135deg, var(--orange), var(--rose)); flex: none; }
+
+/* Atouts */
+.tiles { position: absolute; left: 90px; right: 90px; top: 300px; display: grid; grid-template-columns: 1fr 1fr; gap: 36px; }
+.tile { height: 300px; border-radius: 34px; background: rgba(255,255,255,.07); border: 2px solid rgba(255,255,255,.12); padding: 40px; display: flex; flex-direction: column; justify-content: space-between; }
+.tile svg { width: 84px; height: 84px; }
+.tile b { font-size: 40px; font-weight: 800; line-height: 1.1; letter-spacing: -.01em; }
+
+/* Final */
+#s5 .marque { position: absolute; left: 0; right: 0; top: 420px; text-align: center; font-family: "Inter Display", "Inter", sans-serif; font-weight: 900; font-size: 128px; letter-spacing: -.03em; line-height: 1; }
+#s5 .slogan { position: absolute; left: 0; right: 0; top: 590px; text-align: center; font-size: 36px; font-weight: 600; color: var(--gris); }
+#s5 .cta { position: absolute; left: 50%; top: 720px; transform: translateX(-50%); padding: 34px 70px; border-radius: 999px; background: linear-gradient(90deg, var(--orange), var(--rose)); font-size: 50px; font-weight: 900; white-space: nowrap; box-shadow: 0 20px 70px rgba(255,61,129,.45); }
+#s5 .contact { position: absolute; left: 0; right: 0; top: 920px; text-align: center; font-size: 40px; font-weight: 700; line-height: 1.6; }
+#s5 .contact span { color: var(--cyan); }
+.flash { position: absolute; inset: 0; background: #fff; opacity: 0; pointer-events: none; }
+#progress { position: absolute; left: 0; bottom: 0; height: 8px; background: linear-gradient(90deg, var(--orange), var(--rose), var(--cyan)); }

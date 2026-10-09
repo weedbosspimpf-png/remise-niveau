@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Affiche pub</title>
+<script src="config.js"></script>
+<link rel="stylesheet" href="style.css">
+<style>
+  body { display: block; }
+  #wrap { transform-origin: top left; }
+  .titre { position: absolute; left: 80px; right: 80px; top: 90px; font-family: "Inter Display", "Inter", sans-serif; font-weight: 900; font-size: 104px; line-height: .98; letter-spacing: -.035em; }
+  .sous { position: absolute; left: 80px; top: 335px; font-size: 34px; font-weight: 600; color: var(--gris); }
+  .browser { left: 80px; top: 510px; width: 720px; height: 520px; transform: rotate(-4deg); }
+  .browser .hero { height: 200px; }
+  .browser .cards { top: 375px; }
+  .browser .card { height: 120px; }
+  .phone { left: auto; right: 70px; top: 560px; margin-left: 0; width: 300px; height: 600px; border-radius: 46px; padding: 12px; transform: rotate(6deg); }
+  .screen { border-radius: 36px; }
+  .phone .ecran { padding: 56px 16px 16px; }
+  .phone .app-head { height: 120px; padding: 18px; }
+  .phone .app-head b { font-size: 26px; }
+  .phone .item { height: 72px; margin-top: 12px; }
+  .phone .item .av { width: 44px; height: 44px; }
+  .notch { width: 90px; height: 24px; margin-left: -45px; top: 10px; }
+  .services { position: absolute; left: 80px; top: 1080px; display: flex; gap: 14px; flex-wrap: wrap; width: 640px; }
+  .services span { padding: 12px 22px; border-radius: 999px; border: 2px solid rgba(255,255,255,.2); background: rgba(255,255,255,.06); font-size: 24px; font-weight: 700; }
+  .bas { position: absolute; left: 0; right: 0; bottom: 0; height: 150px; background: rgba(255,255,255,.06); border-top: 2px solid rgba(255,255,255,.1); display: flex; align-items: center; justify-content: space-between; padding: 0 80px; }
+  .bas .marque { font-family: "Inter Display", "Inter", sans-serif; font-weight: 900; font-size: 44px; letter-spacing: -.02em; }
+  .bas .ct { text-align: right; font-size: 26px; font-weight: 700; line-height: 1.45; }
+  .bas .ct span { color: var(--cyan); }
+  .pastille { position: absolute; right: 70px; top: 1110px; width: 230px; height: 230px; margin-top: -150px; border-radius: 50%; background: linear-gradient(135deg, var(--orange), var(--rose)); display: flex; align-items: center; justify-content: center; text-align: center; font-weight: 900; font-size: 36px; line-height: 1.05; transform: rotate(-10deg); box-shadow: 0 20px 60px rgba(255,61,129,.5); }
+</style>
+</head>
+<body>
+<div id="wrap"><div id="stage">
+  <div class="grid"></div>
+  <div class="blob" style="width:620px;height:620px;background:var(--violet);transform:translate(-200px,-150px)"></div>
+  <div class="blob" style="width:520px;height:520px;background:var(--rose);transform:translate(650px,650px)"></div>
+  <div class="blob" style="width:420px;height:420px;background:var(--cyan);opacity:.3;transform:translate(500px,150px)"></div>
+
+  <div class="titre">Votre idée mérite d'exister <span class="grad">en ligne.</span></div>
+  <div class="sous" id="slogan"></div>
+
+  <div class="browser">
+    <div class="bbar"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span><div class="url" id="url"></div></div>
+    <div class="bnav"><div class="logo-b"></div><div class="menu"><i></i><i></i><i></i></div></div>
+    <div class="hero">
+      <div class="bar" style="width:70%;height:34px"></div>
+      <div class="bar" style="width:48%;opacity:.6"></div>
+      <div class="btn">Commander</div>
+    </div>
+    <div class="cards">
+      <div class="card"><div class="ic" style="background:var(--orange)"></div><i style="width:80%"></i></div>
+      <div class="card"><div class="ic" style="background:var(--violet)"></div><i style="width:75%"></i></div>
+      <div class="card"><div class="ic" style="background:var(--cyan)"></div><i style="width:85%"></i></div>
+    </div>
+  </div>
+
+  <div class="phone"><div class="screen">
+    <div class="notch"></div>
+    <div class="ecran">
+      <div class="app-head"><span>Bonjour 👋</span><b>Mon appli</b></div>
+      <div class="item"><div class="av" style="background:var(--orange)"></div><div style="flex:1"><i style="width:70%"></i><i style="width:45%"></i></div></div>
+      <div class="item"><div class="av" style="background:var(--cyan)"></div><div style="flex:1"><i style="width:80%"></i><i style="width:50%"></i></div></div>
+      <div class="item"><div class="av" style="background:var(--violet)"></div><div style="flex:1"><i style="width:60%"></i><i style="width:40%"></i></div></div>
+      <div class="item"><div class="av" style="background:var(--rose)"></div><div style="flex:1"><i style="width:75%"></i><i style="width:35%"></i></div></div>
+    </div>
+  </div></div>
+
+  <div class="services"><span>🌐 Sites web</span><span>📱 Applications</span><span>🎬 Motion design</span><span>🔎 SEO</span></div>
+  <div class="pastille" id="offre"></div>
+
+  <div class="bas">
+    <div class="marque" id="marque"></div>
+    <div class="ct" id="contact"></div>
+  </div>
+</div></div>
+<script>
+  const P = window.PUB, $ = (id) => document.getElementById(id);
+  $("slogan").textContent = P.slogan;
+  $("url").textContent = "https://" + P.site;
+  $("marque").textContent = P.marque;
+  $("offre").textContent = P.offre;
+  $("contact").innerHTML = "📞 " + P.telephone + "<br><span>" + P.site + "</span>";
+  function fit() { const s = Math.min(1, innerWidth / 1080); $("wrap").style.transform = `scale(${s})`; }
+  addEventListener("resize", fit); fit();
+</script>
+</body>
+</html>

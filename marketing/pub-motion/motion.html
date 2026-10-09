@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pub motion 15 s</title>
+<script src="config.js"></script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="wrap"><div id="stage">
+  <div class="grid" id="grid"></div>
+  <div class="blob" id="b1" style="width:620px;height:620px;background:var(--violet)"></div>
+  <div class="blob" id="b2" style="width:520px;height:520px;background:var(--rose)"></div>
+  <div class="blob" id="b3" style="width:460px;height:460px;background:var(--cyan);opacity:.35"></div>
+
+  <!-- Scène 1 : accroche -->
+  <div class="scene" id="s1">
+    <div class="ligne" id="l1" style="top:430px;font-size:120px"><span class="mot">Votre</span><span class="mot">idée</span></div>
+    <div class="ligne" id="l2" style="top:570px;font-size:120px"><span class="mot">mérite</span><span class="mot">d'exister</span></div>
+    <div class="ligne" id="l3" style="top:740px;font-size:150px"><span class="mot grad">en&nbsp;ligne.</span></div>
+  </div>
+
+  <!-- Scène 2 : sites web -->
+  <div class="scene" id="s2">
+    <div class="label" id="lab2">SITES WEB</div>
+    <div class="browser" id="browser">
+      <div class="bbar"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span><div class="url" id="url"></div></div>
+      <div class="bnav" id="bnav"><div class="logo-b"></div><div class="menu"><i></i><i></i><i></i></div></div>
+      <div class="hero" id="hero">
+        <div class="bar" id="hb1" style="width:70%;height:34px"></div>
+        <div class="bar" id="hb2" style="width:48%;opacity:.6"></div>
+        <div class="btn" id="hbtn">Commander</div>
+      </div>
+      <div class="cards">
+        <div class="card" id="c1"><div class="ic" style="background:var(--orange)"></div><i style="width:80%"></i><i style="width:55%"></i></div>
+        <div class="card" id="c2"><div class="ic" style="background:var(--violet)"></div><i style="width:75%"></i><i style="width:60%"></i></div>
+        <div class="card" id="c3"><div class="ic" style="background:var(--cyan)"></div><i style="width:85%"></i><i style="width:50%"></i></div>
+      </div>
+      <svg class="cursor" id="cursor" viewBox="0 0 24 24"><path d="M3 2l7 19 2.5-7.5L20 11z" fill="#1a1050" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"/></svg>
+    </div>
+    <div class="caption" id="cap2" style="top:1010px">Modernes. Rapides.<br><span class="grad">Responsive.</span></div>
+  </div>
+
+  <!-- Scène 3 : applications -->
+  <div class="scene" id="s3">
+    <div class="label" id="lab3">APPLICATIONS MOBILES</div>
+    <div class="phone" id="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="ecran" id="e1">
+        <div class="app-head"><span>Bonjour 👋</span><b>Mon appli</b></div>
+        <div class="item" id="i1"><div class="av" style="background:var(--orange)"></div><div style="flex:1"><i style="width:70%"></i><i style="width:45%"></i></div></div>
+        <div class="item" id="i2"><div class="av" style="background:var(--cyan)"></div><div style="flex:1"><i style="width:80%"></i><i style="width:50%"></i></div></div>
+        <div class="item" id="i3"><div class="av" style="background:var(--violet)"></div><div style="flex:1"><i style="width:60%"></i><i style="width:40%"></i></div></div>
+        <div class="item" id="i4"><div class="av" style="background:var(--rose)"></div><div style="flex:1"><i style="width:75%"></i><i style="width:35%"></i></div></div>
+      </div>
+      <div class="ecran" id="e2">
+        <div class="app-head" style="background:linear-gradient(135deg,#0ea5b7,#7c3aed)"><span>Statistiques</span><b>+128 %</b></div>
+        <div class="chart" id="chart"><div></div><div></div><div></div><div></div><div></div></div>
+      </div>
+    </div></div>
+    <div class="notif" id="notif"><div class="av"></div><div>Nouvelle commande&nbsp;!<small>il y a 1 seconde</small></div></div>
+    <div class="caption" id="cap3" style="top:1110px">iOS <span class="grad">&amp;</span> Android</div>
+  </div>
+
+  <!-- Scène 4 : atouts -->
+  <div class="scene" id="s4">
+    <div class="label" id="lab4">POURQUOI NOUS ?</div>
+    <div class="tiles">
+      <div class="tile" id="t1"><svg viewBox="0 0 24 24" fill="none" stroke="#ff7a18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.6 7.6"/><circle cx="11" cy="11" r="2"/></svg><b>Design<br>sur-mesure</b></div>
+      <div class="tile" id="t2"><svg viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg><b>Livraison<br>rapide</b></div>
+      <div class="tile" id="t3"><svg viewBox="0 0 24 24" fill="none" stroke="#ff3d81" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg><b>Visible sur<br>Google</b></div>
+      <div class="tile" id="t4"><svg viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg><b>Motion<br>design</b></div>
+    </div>
+  </div>
+
+  <!-- Scène 5 : appel à l'action -->
+  <div class="scene" id="s5">
+    <div class="marque" id="marque"></div>
+    <div class="slogan" id="slogan"></div>
+    <div class="cta" id="cta"></div>
+    <div class="contact" id="contact"></div>
+  </div>
+
+  <div class="flash" id="flash"></div>
+  <div id="progress"></div>
+</div></div>
+
+<script>
+const DUREE = 15;
+const P = window.PUB;
+const $ = (id) => document.getElementById(id);
+$("marque").textContent = P.marque;
+$("slogan").textContent = P.slogan;
+$("cta").textContent = P.offre + " →";
+$("contact").innerHTML = "📞 " + P.telephone + "<br><span>" + P.site + "</span>";
+const URL_TXT = P.site;
+
+// Outils d'animation
+const clamp = (x) => Math.max(0, Math.min(1, x));
+const prog = (t, a, b) => clamp((t - a) / (b - a));
+const easeOut = (x) => 1 - Math.pow(1 - x, 3);
+const easeInOut = (x) => x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
+const back = (x) => { const c = 1.70158, c3 = c + 1; return 1 + c3 * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); };
+const lerp = (a, b, x) => a + (b - a) * x;
+function set(el, o, tf) { el.style.opacity = o; if (tf !== undefined) el.style.transform = tf; }
+// Entrée (a→a+d) puis sortie (s→s+ds)
+function inOut(t, a, d, s, ds) { return easeOut(prog(t, a, a + d)) * (1 - easeInOut(prog(t, s, s + ds))); }
+
+const mots = [...document.querySelectorAll("#s1 .mot")];
+
+function renderAt(t) {
+  // Fond vivant
+  $("b1").style.transform = `translate(${-150 + 120 * Math.sin(t * .5)}px, ${-120 + 80 * Math.cos(t * .4)}px)`;
+  $("b2").style.transform = `translate(${650 + 100 * Math.cos(t * .45)}px, ${700 + 120 * Math.sin(t * .35)}px)`;
+  $("b3").style.transform = `translate(${400 + 160 * Math.sin(t * .3 + 1)}px, ${300 + 200 * Math.cos(t * .5)}px)`;
+  $("grid").style.transform = `translateY(${(t * 20) % 60}px)`;
+  $("progress").style.width = (t / DUREE * 100) + "%";
+
+  // Flash de transition
+  const flashes = [3.0, 6.6, 10.0, 12.4];
+  let f = 0; for (const x of flashes) f = Math.max(f, 1 - Math.abs(t - x) / .12);
+  $("flash").style.opacity = clamp(f) * .35;
+
+  // ---- Scène 1 : 0 → 3 s
+  const s1 = t < 3.1;
+  $("s1").style.display = s1 ? "" : "none";
+  if (s1) {
+    const sortie = easeInOut(prog(t, 2.6, 3.0));
+    mots.forEach((m, i) => {
+      const p = back(prog(t, .15 + i * .32, .65 + i * .32));
+      set(m, clamp(p * 1.5), `translateY(${lerp(80, 0, p) - sortie * 200}px) scale(${lerp(.6, 1, clamp(p))}) rotate(${lerp(-8, 0, clamp(p))}deg)`);
+    });
+    $("s1").style.opacity = 1 - sortie;
+    $("s1").style.filter = `blur(${sortie * 12}px)`;
+  }
+
+  // ---- Scène 2 : 3 → 6,6 s
+  const s2 = t > 2.9 && t < 6.7;
+  $("s2").style.display = s2 ? "" : "none";
+  if (s2) {
+    const ex = easeInOut(prog(t, 6.25, 6.6));
+    $("s2").style.transform = `translateX(${-ex * 1080}px)`;
+    const pl = inOut(t, 3.0, .4, 99, 1);
+    set($("lab2"), pl, `translateX(-50%) translateY(${(1 - pl) * -40}px)`);
+    const pb = back(prog(t, 3.0, 3.5));
+    set($("browser"), clamp(pb * 2), `translateY(${(1 - pb) * 300}px) scale(${lerp(.7, 1, pb)}) rotateX(${(1 - pb) * 25}deg)`);
+    // Tape l'URL
+    const n = Math.floor(prog(t, 3.3, 4.0) * URL_TXT.length);
+    $("url").textContent = "https://" + URL_TXT.slice(0, n) + ((Math.floor(t * 4) % 2 && n < URL_TXT.length) ? "|" : "");
+    set($("bnav"), easeOut(prog(t, 3.5, 3.8)), `translateY(${(1 - easeOut(prog(t, 3.5, 3.8))) * -30}px)`);
+    const ph = back(prog(t, 3.7, 4.2));
+    set($("hero"), clamp(ph * 2), `scale(${lerp(.85, 1, ph)})`);
+    $("hb1").style.width = (70 * easeOut(prog(t, 4.0, 4.5))) + "%";
+    $("hb2").style.width = (48 * easeOut(prog(t, 4.15, 4.6))) + "%";
+    const clic = prog(t, 5.55, 5.85);
+    const pbt = back(prog(t, 4.2, 4.6));
+    set($("hbtn"), clamp(pbt * 2), `scale(${pbt * (1 - Math.sin(clic * Math.PI) * .12)})`);
+    $("hbtn").style.boxShadow = `0 0 0 ${Math.sin(clic * Math.PI) * 18}px rgba(255,122,24,.35)`;
+    ["c1", "c2", "c3"].forEach((id, i) => {
+      const p = back(prog(t, 4.45 + i * .15, 4.9 + i * .15));
+      set($(id), clamp(p * 2), `translateY(${(1 - p) * 80}px)`);
+    });
+    // Curseur
+    const pc = easeInOut(prog(t, 4.8, 5.5));
+    set($("cursor"), prog(t, 4.7, 4.9), `translate(${lerp(700, 170, pc)}px, ${lerp(580, 330, pc)}px) scale(${1 - Math.sin(clic * Math.PI) * .2})`);
+    $("cursor").style.left = "0"; $("cursor").style.top = "0";
+    const pcap = easeOut(prog(t, 4.6, 5.1));
+    set($("cap2"), pcap, `translateY(${(1 - pcap) * 50}px)`);
+  }
+
+  // ---- Scène 3 : 6,6 → 10 s
+  const s3 = t > 6.5 && t < 10.1;
+  $("s3").style.display = s3 ? "" : "none";
+  if (s3) {
+    const en = easeOut(prog(t, 6.6, 7.0));
+    const ex = easeInOut(prog(t, 9.65, 10.0));
+    $("s3").style.transform = `translateX(${(1 - en) * 1080}px) scale(${1 - ex * .3})`;
+    $("s3").style.opacity = 1 - ex;
+    const pp = back(prog(t, 6.7, 7.3));
+    set($("phone"), 1, `translateY(${(1 - pp) * 500}px) rotate(${(1 - pp) * -12 + Math.sin(t * 1.5) * 1.5}deg)`);
+    ["i1", "i2", "i3", "i4"].forEach((id, i) => {
+      const p = back(prog(t, 7.2 + i * .13, 7.6 + i * .13));
+      set($(id), clamp(p * 2), `translateX(${(1 - p) * 120}px)`);
+    });
+    // Notification
+    const pn = back(prog(t, 7.9, 8.3)) * (1 - easeInOut(prog(t, 9.0, 9.3)));
+    set($("notif"), clamp(pn * 2), `translateX(${(1 - pn) * 300}px) scale(${lerp(.8, 1, clamp(pn))})`);
+    // Changement d'écran
+    const sw = easeInOut(prog(t, 8.6, 9.0));
+    $("e1").style.transform = `translateX(${-sw * 100}%)`;
+    $("e2").style.transform = `translateX(${(1 - sw) * 100}%)`;
+    const hs = [45, 70, 55, 85, 100];
+    [...$("chart").children].forEach((b, i) => {
+      b.style.height = (hs[i] * back(prog(t, 8.9 + i * .08, 9.3 + i * .08))) + "%";
+    });
+    const pl = easeOut(prog(t, 6.8, 7.2));
+    set($("lab3"), pl, `translateX(-50%) translateY(${(1 - pl) * -40}px)`);
+    const pcap = easeOut(prog(t, 7.4, 7.9));
+    set($("cap3"), pcap, `translateY(${(1 - pcap) * 50}px)`);
+  }
+
+  // ---- Scène 4 : 10 → 12,4 s
+  const s4 = t > 9.9 && t < 12.5;
+  $("s4").style.display = s4 ? "" : "none";
+  if (s4) {
+    const ex = easeInOut(prog(t, 12.05, 12.4));
+    $("s4").style.opacity = 1 - ex;
+    $("s4").style.transform = `scale(${1 + ex * .25})`;
+    const pl = easeOut(prog(t, 10.0, 10.35));
+    set($("lab4"), pl, `translateX(-50%) translateY(${(1 - pl) * -40}px)`);
+    ["t1", "t2", "t3", "t4"].forEach((id, i) => {
+      const p = back(prog(t, 10.1 + i * .17, 10.6 + i * .17));
+      const flot = Math.sin(t * 2 + i) * 6;
+      set($(id), clamp(p * 2), `translateY(${(1 - p) * 120 + flot}px) scale(${lerp(.6, 1, p)}) rotate(${(1 - p) * (i % 2 ? 10 : -10)}deg)`);
+    });
+  }
+
+  // ---- Scène 5 : 12,4 → 15 s
+  const s5 = t > 12.3;
+  $("s5").style.display = s5 ? "" : "none";
+  if (s5) {
+    const pm = easeOut(prog(t, 12.4, 13.0));
+    set($("marque"), pm, `scale(${lerp(1.5, 1, pm)})`);
+    $("marque").style.letterSpacing = lerp(.4, -.03, pm) + "em";
+    $("marque").style.filter = `blur(${(1 - pm) * 14}px)`;
+    const ps = easeOut(prog(t, 12.85, 13.3));
+    set($("slogan"), ps, `translateY(${(1 - ps) * 30}px)`);
+    const pc = back(prog(t, 13.1, 13.6));
+    const pulse = t > 13.6 ? 1 + Math.sin((t - 13.6) * 6) * .03 : 1;
+    set($("cta"), clamp(pc * 2), `translateX(-50%) scale(${pc * pulse})`);
+    const pk = easeOut(prog(t, 13.45, 13.95));
+    set($("contact"), pk, `translateY(${(1 - pk) * 40}px)`);
+  }
+}
+
+// Mise à l'échelle dans la fenêtre
+function fit() { const s = Math.min(innerWidth / 1080, innerHeight / 1350); $("wrap").style.transform = `scale(${s})`; }
+addEventListener("resize", fit); fit();
+
+window.renderAt = renderAt;
+window.DUREE = DUREE;
+if (!new URLSearchParams(location.search).has("capture")) {
+  const t0 = performance.now();
+  (function boucle(now) { renderAt(((now - t0) / 1000) % DUREE); requestAnimationFrame(boucle); })(t0);
+} else {
+  document.body.style.display = "block";
+  $("wrap").style.transform = "none";
+  renderAt(0);
+}
+</script>
+</body>
+</html>
