@@ -92,9 +92,10 @@ body { display: flex; align-items: center; justify-content: center; overflow: hi
 #s5 .marque span { font-weight: 500; font-size: 40px; letter-spacing: .14em; margin-top: 12px; color: var(--orange); }
 .filigrane { position: absolute; left: 50%; bottom: 48px; transform: translateX(-50%); display: flex; align-items: center; gap: 14px; font-family: "Montserrat", sans-serif; font-weight: 600; font-size: 30px; letter-spacing: .08em; color: var(--blanc); opacity: .85; }
 .filigrane img { width: 64px; }
-#s5 .slogan { position: absolute; left: 0; right: 0; top: 720px; text-align: center; font-size: 36px; font-weight: 600; color: var(--gris); }
-#s5 .cta { position: absolute; left: 50%; top: 820px; transform: translateX(-50%); padding: 34px 70px; border-radius: 999px; background: linear-gradient(90deg, var(--orange), var(--rose)); font-size: 50px; font-weight: 900; white-space: nowrap; color: var(--encre); box-shadow: 0 20px 70px rgba(212,175,90,.4); }
-#s5 .contact { position: absolute; left: 0; right: 0; top: 1020px; text-align: center; font-size: 40px; font-weight: 700; line-height: 1.6; }
+#s5 .slogan { position: absolute; left: 0; right: 0; top: 690px; text-align: center; font-size: 36px; line-height: 1.45; font-weight: 600; color: var(--gris); }
+#s5 .slogan b { color: var(--cyan); font-weight: 900; }
+#s5 .cta { position: absolute; left: 50%; top: 840px; transform: translateX(-50%); padding: 34px 70px; border-radius: 999px; background: linear-gradient(90deg, var(--orange), var(--rose)); font-size: 50px; font-weight: 900; white-space: nowrap; color: var(--encre); box-shadow: 0 20px 70px rgba(212,175,90,.4); }
+#s5 .contact { position: absolute; left: 0; right: 0; top: 1040px; text-align: center; font-size: 40px; font-weight: 700; line-height: 1.6; }
 #s5 .contact span { color: var(--cyan); }
 .flash { position: absolute; inset: 0; background: #fff; opacity: 0; pointer-events: none; }
 #progress { position: absolute; left: 0; bottom: 0; height: 8px; background: linear-gradient(90deg, var(--orange), var(--rose), var(--cyan)); }

@@ -11,11 +11,12 @@
   #wrap { transform-origin: top left; }
   .titre { position: absolute; left: 80px; right: 80px; top: 90px; font-family: "Inter Display", "Inter", sans-serif; font-weight: 900; font-size: 104px; line-height: .98; letter-spacing: -.035em; }
   .sous { position: absolute; left: 80px; top: 335px; font-size: 34px; font-weight: 600; color: var(--gris); }
-  .browser { left: 80px; top: 510px; width: 720px; height: 520px; transform: rotate(-4deg); }
+  .browser { left: 80px; top: 455px; width: 720px; height: 480px; transform: rotate(-4deg); }
   .browser .hero { height: 200px; }
   .browser .cards { top: 375px; }
-  .browser .card { height: 120px; }
-  .phone { left: auto; right: 70px; top: 560px; margin-left: 0; width: 300px; height: 600px; border-radius: 46px; padding: 12px; transform: rotate(6deg); }
+  .browser .card { height: 88px; padding: 16px; }
+  .browser .card .ic { width: 40px; height: 40px; margin-bottom: 12px; }
+  .phone { left: auto; right: 70px; top: 500px; margin-left: 0; width: 300px; height: 600px; border-radius: 46px; padding: 12px; transform: rotate(6deg); }
   .screen { border-radius: 36px; }
   .phone .ecran { padding: 56px 16px 16px; }
   .phone .app-head { height: 120px; padding: 18px; }
@@ -23,8 +24,9 @@
   .phone .item { height: 72px; margin-top: 12px; }
   .phone .item .av { width: 44px; height: 44px; }
   .notch { width: 90px; height: 24px; margin-left: -45px; top: 10px; }
-  .services { position: absolute; left: 80px; top: 1080px; display: flex; gap: 14px; flex-wrap: wrap; width: 640px; }
-  .services span { padding: 12px 22px; border-radius: 999px; border: 2px solid rgba(255,255,255,.2); background: rgba(255,255,255,.06); font-size: 24px; font-weight: 700; }
+  .services { position: absolute; left: 80px; top: 1018px; display: flex; flex-direction: column; gap: 12px; width: 640px; }
+  .services span { align-self: flex-start; padding: 8px 22px; border-radius: 999px; border: 2px solid rgba(232,200,116,.45); background: rgba(232,200,116,.08); font-size: 25px; font-weight: 700; }
+  .services b { color: var(--cyan); font-weight: 900; }
   .bas { position: absolute; left: 0; right: 0; bottom: 0; height: 150px; background: rgba(255,255,255,.06); border-top: 2px solid rgba(255,255,255,.1); display: flex; align-items: center; justify-content: space-between; padding: 0 80px; }
   .bas .marque { height: 104px; }
   .bas .ct { text-align: right; font-size: 26px; font-weight: 700; line-height: 1.45; }
@@ -68,7 +70,7 @@
     </div>
   </div></div>
 
-  <div class="services"><span>🌐 Sites web</span><span>📱 Applications</span><span>🎬 Motion design</span><span>🔎 SEO</span></div>
+  <div class="services"><span>🌐 Site web dès <b id="prix-site"></b></span><span>📱 Application dès <b id="prix-app"></b></span><span>🎬 Motion design 45 s : <b id="prix-motion"></b></span></div>
   <div class="pastille" id="offre"></div>
 
   <div class="bas">
@@ -81,6 +83,9 @@
   $("slogan").textContent = P.slogan;
   $("url").textContent = "https://www.votre-entreprise.com";
   $("offre").textContent = P.offre;
+  $("prix-site").textContent = P.prixSite;
+  $("prix-app").textContent = P.prixApp;
+  $("prix-motion").textContent = P.prixMotion;
   $("contact").innerHTML = "📞 " + P.telephone + (P.email ? "<br><span>✉️ " + P.email + "</span>" : "") + (P.site ? "<br><span>" + P.site + "</span>" : "");
   function fit() { const s = Math.min(1, innerWidth / 1080); $("wrap").style.transform = `scale(${s})`; }
   addEventListener("resize", fit); fit();

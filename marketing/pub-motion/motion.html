@@ -91,7 +91,7 @@
 const DUREE = 15;
 const P = window.PUB;
 const $ = (id) => document.getElementById(id);
-$("slogan").textContent = P.slogan;
+$("slogan").innerHTML = "Sites web dès <b>" + P.prixSite + "</b> · Applis dès <b>" + P.prixApp + "</b><br>Motion design 45 s : <b>" + P.prixMotion + "</b>";
 $("cta").textContent = P.offre + " →";
 $("contact").innerHTML = "📞 " + P.telephone + (P.email ? "<br><span>✉️ " + P.email + "</span>" : "") + (P.site ? "<br><span>" + P.site + "</span>" : "");
 const URL_TXT = "www.votre-entreprise.com"; // le site du client, dans la maquette
