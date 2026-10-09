@@ -18,4 +18,13 @@ Publicité de **15 secondes** + **affiche** pour **Hortan Intelligence Plus**, a
 4. **10–12,4 s** — Atouts : design sur-mesure, livraison rapide, visible sur Google, motion design.
 5. **12,4–15 s** — Marque, « Devis gratuit », téléphone et site.
 
-La vidéo n'a pas de son : ajoutez une musique libre de droits dans l'éditeur Facebook/CapCut avant publication.
+`rendu/pub-15s-musique.mp4` = version avec la musique `musique.mp3` (démarrée à 1 s pour que le « drop » tombe à 3 s, fondu de fin). Placez une voix off dans `voix.mp3` pour l’ajouter ensuite.
+
+## Texte de voix off (≈ 15 s)
+| Temps | Texte |
+|---|---|
+| 0–3 s | « Votre idée mérite d'exister en ligne. » |
+| 3–6 s | « Sites web modernes, rapides, adaptés au mobile… » |
+| 6–10 s | « …et applications mobiles iOS et Android. » |
+| 10–12 s | « Design sur-mesure, livraison rapide, motion design. » |
+| 12–15 s | « Hortan Intelligence Plus. Devis gratuit au 07 09 70 60 28. » |

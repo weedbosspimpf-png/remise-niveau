@@ -2,7 +2,7 @@
 // Prérequis : Playwright + ffmpeg.  Lancement : node render.mjs
 import { createRequire } from "node:module";
 import { spawn } from "node:child_process";
-import { mkdirSync } from "node:fs";
+import { mkdirSync, existsSync } from "node:fs";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import path from "node:path";
 
@@ -42,3 +42,17 @@ ff.stdin.end();
 await new Promise((r) => ff.on("close", r));
 await browser.close();
 console.log("\r✓ rendu/pub-15s.mp4      ");
+
+// Version avec musique : on démarre la piste 1 s plus tôt pour que le « drop » (à 4 s)
+// tombe sur le passage à la scène « Sites web » (à 3 s).
+const MUSIQUE = path.join(dir, "musique.mp3"), DECALAGE = 1.0;
+if (existsSync(MUSIQUE)) {
+  const fin = duree - 1.2;
+  const fa = spawn("ffmpeg", ["-y", "-loglevel", "error", "-i", path.join(out, "pub-15s.mp4"),
+    "-ss", String(DECALAGE), "-t", String(duree), "-i", MUSIQUE,
+    "-map", "0:v", "-map", "1:a", "-c:v", "copy", "-c:a", "aac", "-b:a", "192k",
+    "-af", `afade=t=in:d=0.3,afade=t=out:st=${fin}:d=1.2`, "-shortest", "-movflags", "+faststart",
+    path.join(out, "pub-15s-musique.mp4")], { stdio: "inherit" });
+  await new Promise((r) => fa.on("close", r));
+  console.log("✓ rendu/pub-15s-musique.mp4");
+}
