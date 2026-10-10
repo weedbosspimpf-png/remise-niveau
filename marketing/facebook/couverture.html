@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><title>Couverture Facebook Hortan</title>
+<script src="../pub-motion/config.js"></script>
+<style>
+  @font-face { font-family: "Montserrat"; font-weight: 500; src: url(../fonts/montserrat-500.woff2) format("woff2"); }
+  @font-face { font-family: "Montserrat"; font-weight: 600; src: url(../fonts/montserrat-600.woff2) format("woff2"); }
+  @font-face { font-family: "Montserrat"; font-weight: 700; src: url(../fonts/montserrat-700.woff2) format("woff2"); }
+  @font-face { font-family: "Montserrat"; font-weight: 800; src: url(../fonts/montserrat-800.woff2) format("woff2"); }
+  * { margin: 0; box-sizing: border-box; }
+  body { background: #000; font-family: "Montserrat", sans-serif; }
+  /* 1640×624 : format conseillé par Facebook. Tout l'essentiel reste dans la zone centrale (≈ 1100 px),
+     visible aussi sur mobile, où les côtés sont rognés. */
+  .c { position: relative; width: 1640px; height: 624px; overflow: hidden; color: #fbf6ea;
+       background: radial-gradient(70% 120% at 50% 0%, #2b2213 0%, #0b0a08 60%); }
+  .grille { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px); background-size: 52px 52px; }
+  .halo { position: absolute; width: 700px; height: 700px; border-radius: 50%; filter: blur(120px); opacity: .28; background: #d4af5a; }
+  .zone { position: absolute; left: 270px; right: 270px; top: 0; bottom: 0; display: flex; align-items: center; gap: 70px; }
+  .logo { flex: none; display: flex; flex-direction: column; align-items: center; }
+  .logo img { width: 230px; }
+  .logo b { font-weight: 600; font-size: 64px; letter-spacing: .02em; line-height: 1; margin-top: 10px; }
+  .logo span { font-weight: 500; font-size: 19px; letter-spacing: .15em; color: #d4af5a; margin-top: 8px; }
+  .sep { width: 2px; height: 300px; background: linear-gradient(transparent, #d4af5a, transparent); flex: none; }
+  .txt { display: grid; gap: 22px; min-width: 0; }
+  .txt h1 { font-weight: 800; font-size: 54px; line-height: 1.05; letter-spacing: -.02em; }
+  .or { background: linear-gradient(100deg, #f6e3a1, #d4af5a 55%, #9a7530); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .prix { display: flex; gap: 14px; }
+  .prix div { border: 2px solid rgba(212,175,90,.5); border-radius: 16px; padding: 12px 18px; background: rgba(212,175,90,.07); }
+  .prix small { display: block; white-space: nowrap; font-size: 15px; font-weight: 600; color: #cfc5ad; }
+  .prix b { white-space: nowrap; font-size: 26px; font-weight: 800; color: #f1dc9c; font-variant-numeric: tabular-nums; }
+  .ct { font-size: 24px; font-weight: 700; white-space: nowrap; }
+  .ct span { color: #e8c874; }
+</style></head>
+<body>
+<div class="c" id="cover">
+  <div class="grille"></div>
+  <div class="halo" style="left:180px;top:-250px"></div>
+  <div class="halo" style="right:120px;bottom:-380px;opacity:.18"></div>
+  <div class="zone">
+    <div class="logo"><img src="../logo/hortan-symbole.svg" alt=""><b>HORTAN</b><span>INTELLIGENCE PLUS</span></div>
+    <div class="sep"></div>
+    <div class="txt">
+      <h1>Sites web, applications<br>et <span class="or">motion design</span></h1>
+      <div class="prix">
+        <div><small>Site web</small><b id="p1"></b></div>
+        <div><small>Application</small><b id="p2"></b></div>
+        <div><small>Motion design 45 s</small><b id="p3"></b></div>
+      </div>
+      <div class="ct">📞 <span id="tel"></span> · Devis gratuit sur WhatsApp</div>
+    </div>
+  </div>
+</div>
+<div id="profil" style="width:720px;height:720px;background:radial-gradient(circle at 50% 40%,#2b2213,#0b0a08 70%);display:flex;align-items:center;justify-content:center">
+  <img src="../logo/hortan-symbole.svg" alt="" style="width:460px;transform:translate(-8px,6px)">
+</div>
+<script>
+  const P = window.PUB, f = (s) => "dès " + s.replace(" FCFA", " F");
+  document.getElementById("p1").textContent = f(P.prixSite);
+  document.getElementById("p2").textContent = f(P.prixApp);
+  document.getElementById("p3").textContent = P.prixMotion.replace(" FCFA", " F");
+  document.getElementById("tel").textContent = P.telephone;
+</script>
+</body></html>
