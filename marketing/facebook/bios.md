@@ -10,12 +10,12 @@ Hortan Intelligence Plus transforme vos idées en solutions digitales qui font v
 ✅ Applications mobiles Android et iOS, belles et simples à utiliser
 ✅ Vidéos publicitaires qui racontent votre histoire, et motion design qui arrête le scroll
 
-💰 Sites dès 30 000 FCFA · Applications dès 100 000 FCFA · Motion design 45 s : 15 000 FCFA · Vidéo publicitaire : sur devis
+💰 Sites dès 30 000 FCFA · Applications dès 100 000 FCFA · Motion design 45 s : 15 000 FCFA · Vidéo publicitaire dès 50 000 FCFA
 📩 Devis gratuit sur WhatsApp : +225 07 09 70 60 28
 ✉️ hortanintelligence@gmail.com
 
 ## WhatsApp Business : description (≤ 512 caractères)
-Hortan Intelligence Plus : création de sites web, d'applications mobiles, de vidéos publicitaires et de motion design en Côte d'Ivoire. Sites dès 30 000 FCFA, applications dès 100 000 FCFA, motion design 45 s à 15 000 FCFA. Décrivez-nous votre projet ici : le devis est gratuit.
+Hortan Intelligence Plus : création de sites web, d'applications mobiles, de vidéos publicitaires et de motion design en Côte d'Ivoire. Sites dès 30 000 FCFA, applications dès 100 000 FCFA, motion design 45 s à 15 000 FCFA, vidéos publicitaires dès 50 000 FCFA. Décrivez-nous votre projet ici : le devis est gratuit.
 
 ## WhatsApp Business : message d'accueil automatique
 Bonjour et bienvenue chez Hortan Intelligence Plus ✨
