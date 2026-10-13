@@ -34,7 +34,7 @@
   #fin .nom { position: absolute; left: 0; right: 0; top: 400px; text-align: center; font-weight: 600; font-size: 104px; line-height: 1; }
   #fin .ip { position: absolute; left: 0; right: 0; top: 520px; text-align: center; font-weight: 500; font-size: 32px; letter-spacing: .15em; color: #d4af5a; }
   #fin .slogan { position: absolute; left: 0; right: 0; top: 610px; text-align: center; font-weight: 700; font-size: 46px; }
-  #fin .prix { position: absolute; left: 0; right: 0; top: 720px; display: flex; justify-content: center; gap: 24px; }
+  #fin .prix { position: absolute; left: 0; right: 0; top: 720px; display: flex; justify-content: center; gap: 20px; }
   #fin .prix div { border: 2px solid rgba(212,175,90,.55); border-radius: 18px; padding: 14px 26px; background: rgba(212,175,90,.08); text-align: center; }
   #fin .prix small { display: block; font-size: 20px; font-weight: 600; color: #cfc5ad; }
   #fin .prix b { font-size: 34px; font-weight: 800; color: #f1dc9c; white-space: nowrap; }
@@ -65,6 +65,7 @@
     <div><small>Site web</small><b id="p1"></b></div>
     <div><small>Application</small><b id="p2"></b></div>
     <div><small>Motion design 45 s</small><b id="p3"></b></div>
+    <div><small>Vidéo publicitaire</small><b id="p4"></b></div>
   </div>
   <div class="ct" id="fct">Devis gratuit sur WhatsApp · <span id="tel2"></span></div>
   <div class="url" id="furl">hortan-intelligence-plus.netlify.app</div>
@@ -76,6 +77,7 @@
   $("p1").textContent = "dès " + f(P.prixSite);
   $("p2").textContent = "dès " + f(P.prixApp);
   $("p3").textContent = f(P.prixMotion);
+  $("p4").textContent = "dès " + f(P.prixPub);
   $("tel2").textContent = P.telephone.replace("+225 ", "");
   const clamp = (x) => Math.max(0, Math.min(1, x));
   const prog = (t, a, b) => clamp((t - a) / (b - a));
