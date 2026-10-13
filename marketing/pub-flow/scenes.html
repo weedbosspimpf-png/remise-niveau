@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><title>Scènes pub Flow</title>
+<script src="../pub-motion/config.js"></script>
+<style>
+  @font-face { font-family: "Montserrat"; font-weight: 500; src: url(../fonts/montserrat-500.woff2) format("woff2"); }
+  @font-face { font-family: "Montserrat"; font-weight: 600; src: url(../fonts/montserrat-600.woff2) format("woff2"); }
+  @font-face { font-family: "Montserrat"; font-weight: 700; src: url(../fonts/montserrat-700.woff2) format("woff2"); }
+  @font-face { font-family: "Montserrat"; font-weight: 800; src: url(../fonts/montserrat-800.woff2) format("woff2"); }
+  * { margin: 0; box-sizing: border-box; }
+  html, body { background: transparent; }
+  body { font-family: "Montserrat", sans-serif; color: #fbf6ea; }
+  .scene { position: relative; width: 1920px; height: 1080px; overflow: hidden; display: none; }
+  .fond { background: radial-gradient(70% 90% at 50% 30%, #2b2213, #0b0a08 70%); }
+  .grille { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px); background-size: 60px 60px; }
+  .or { background: linear-gradient(100deg, #f6e3a1, #d4af5a 55%, #9a7530); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+  /* Sous-titre narratif (bas d'écran, sur fond dégradé) */
+  #legende { background: transparent; }
+  #legende .bande { position: absolute; left: 0; right: 0; bottom: 0; height: 330px; background: linear-gradient(transparent, rgba(0,0,0,.72)); }
+  #legende p { position: absolute; left: 160px; right: 160px; bottom: 80px; text-align: center; font-size: 54px; font-weight: 700; line-height: 1.25; text-shadow: 0 4px 24px rgba(0,0,0,.8); text-wrap: balance; }
+
+  /* Le vrai site sur un téléphone */
+  #site .tel { position: absolute; left: 1060px; top: 70px; width: 470px; height: 940px; border-radius: 64px; background: #111; padding: 16px; box-shadow: 0 50px 120px rgba(0,0,0,.7), 0 0 0 3px rgba(241,220,156,.25), 0 0 120px rgba(212,175,90,.25); }
+  #site .ecran { width: 100%; height: 100%; border-radius: 50px; overflow: hidden; position: relative; background: #0b0a08; }
+  #site .ecran img { position: absolute; left: 0; top: 0; width: 100%; }
+  #site .encoche { position: absolute; top: 14px; left: 50%; width: 130px; height: 34px; margin-left: -65px; border-radius: 17px; background: #111; z-index: 2; }
+  #site .txt { position: absolute; left: 190px; top: 330px; width: 760px; display: grid; gap: 26px; }
+  #site .txt small { font-size: 26px; font-weight: 700; letter-spacing: .25em; color: #d4af5a; }
+  #site .txt h2 { font-size: 78px; font-weight: 800; line-height: 1.05; letter-spacing: -.02em; }
+  #site .txt div { font-size: 30px; font-weight: 600; color: #e8c874; }
+
+  /* Écran de fin */
+  #fin .sym { position: absolute; left: 50%; top: 110px; width: 300px; margin-left: -150px; }
+  #fin .nom { position: absolute; left: 0; right: 0; top: 400px; text-align: center; font-weight: 600; font-size: 104px; line-height: 1; }
+  #fin .ip { position: absolute; left: 0; right: 0; top: 520px; text-align: center; font-weight: 500; font-size: 32px; letter-spacing: .15em; color: #d4af5a; }
+  #fin .slogan { position: absolute; left: 0; right: 0; top: 610px; text-align: center; font-weight: 700; font-size: 46px; }
+  #fin .prix { position: absolute; left: 0; right: 0; top: 720px; display: flex; justify-content: center; gap: 24px; }
+  #fin .prix div { border: 2px solid rgba(212,175,90,.55); border-radius: 18px; padding: 14px 26px; background: rgba(212,175,90,.08); text-align: center; }
+  #fin .prix small { display: block; font-size: 20px; font-weight: 600; color: #cfc5ad; }
+  #fin .prix b { font-size: 34px; font-weight: 800; color: #f1dc9c; white-space: nowrap; }
+  #fin .ct { position: absolute; left: 0; right: 0; top: 880px; text-align: center; font-size: 40px; font-weight: 800; }
+  #fin .ct span { color: #e8c874; }
+  #fin .url { position: absolute; left: 0; right: 0; top: 950px; text-align: center; font-size: 26px; font-weight: 600; color: #cfc5ad; }
+</style></head>
+<body>
+<div class="scene" id="legende"><div class="bande"></div><p id="texte"></p></div>
+
+<div class="scene fond" id="site">
+  <div class="grille"></div>
+  <div class="txt" id="sitetxt">
+    <small>IL DÉCOUVRE</small>
+    <h2>Hortan<br><span class="or">Intelligence Plus</span></h2>
+    <div>hortan-intelligence-plus.netlify.app</div>
+  </div>
+  <div class="tel" id="tel"><div class="ecran"><div class="encoche"></div><img id="capture" alt=""></div></div>
+</div>
+
+<div class="scene fond" id="fin">
+  <div class="grille"></div>
+  <img class="sym" id="fsym" src="../logo/hortan-symbole.svg" alt="">
+  <div class="nom" id="fnom">HORTAN</div>
+  <div class="ip" id="fip">INTELLIGENCE PLUS</div>
+  <div class="slogan" id="fslogan">Votre activité mérite <span class="or">d'évoluer.</span></div>
+  <div class="prix" id="fprix">
+    <div><small>Site web</small><b id="p1"></b></div>
+    <div><small>Application</small><b id="p2"></b></div>
+    <div><small>Motion design 45 s</small><b id="p3"></b></div>
+  </div>
+  <div class="ct" id="fct">Devis gratuit sur WhatsApp · <span id="tel2"></span></div>
+  <div class="url" id="furl">hortan-intelligence-plus.netlify.app</div>
+</div>
+
+<script>
+  const P = window.PUB, $ = (id) => document.getElementById(id);
+  const f = (s) => s.replace(" FCFA", " F");
+  $("p1").textContent = "dès " + f(P.prixSite);
+  $("p2").textContent = "dès " + f(P.prixApp);
+  $("p3").textContent = f(P.prixMotion);
+  $("tel2").textContent = P.telephone.replace("+225 ", "");
+  const clamp = (x) => Math.max(0, Math.min(1, x));
+  const prog = (t, a, b) => clamp((t - a) / (b - a));
+  const easeOut = (x) => 1 - Math.pow(1 - x, 3);
+  const easeInOut = (x) => x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
+  const back = (x) => { const c = 1.70158, c3 = c + 1; return 1 + c3 * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); };
+  const set = (el, o, tf) => { el.style.opacity = o; if (tf !== undefined) el.style.transform = tf; };
+
+  window.montrer = (id) => { document.querySelectorAll(".scene").forEach((s) => (s.style.display = s.id === id ? "block" : "none")); };
+  window.legende = (txt) => { $("texte").innerHTML = txt; };
+
+  // Plan « le vrai site » : le téléphone glisse, puis la page défile.
+  window.siteAt = (t, hauteurCapture) => {
+    const p = easeOut(prog(t, 0, .7));
+    set($("tel"), 1, `translateY(${(1 - p) * 300}px) rotate(${(1 - p) * 6}deg)`);
+    const pt = easeOut(prog(t, .2, .9));
+    set($("sitetxt"), pt, `translateX(${(1 - pt) * -60}px)`);
+    const visible = 908, max = Math.max(0, hauteurCapture - visible);
+    $("capture").style.transform = `translateY(${-easeInOut(prog(t, 1.0, 4.2)) * Math.min(max, 2600)}px)`;
+  };
+  // Écran de fin
+  window.finAt = (t) => {
+    const ps = back(prog(t, 0, .6));
+    set($("fsym"), clamp(ps * 2), `scale(${.4 + .6 * ps})`);
+    const pn = easeOut(prog(t, .3, .9));
+    set($("fnom"), pn); $("fnom").style.letterSpacing = (.5 - .48 * pn) + "em";
+    set($("fip"), easeOut(prog(t, .6, 1.1)));
+    const sl = easeOut(prog(t, 1.0, 1.5)); set($("fslogan"), sl, `translateY(${(1 - sl) * 30}px)`);
+    const pp = easeOut(prog(t, 1.6, 2.1)); set($("fprix"), pp, `translateY(${(1 - pp) * 30}px)`);
+    const pc = back(prog(t, 2.2, 2.7)); set($("fct"), clamp(pc * 2), `scale(${.8 + .2 * pc})`);
+    set($("furl"), easeOut(prog(t, 2.6, 3.1)));
+  };
+</script>
+</body></html>
