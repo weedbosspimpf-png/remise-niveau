@@ -26,7 +26,7 @@ const SEG = [
   ["SITE", 0, 4.5],
   ["sources/3-livraison.mp4", 0.5, 7],
   ["sources/4-boutique.mp4", 0.5, 7],
-  ["FIN", 0, 6],
+  ["FIN", 0, 7],
 ];
 const debuts = [];
 SEG.reduce((t, s, i) => { debuts.push(t); return t + s[2] - (i < SEG.length - 1 ? X : 0); }, 0);
@@ -70,7 +70,7 @@ await page.evaluate((src) => { document.getElementById("capture").src = src; }, 
 await page.waitForFunction(() => document.getElementById("capture").complete);
 const hauteur = await page.evaluate(() => document.getElementById("capture").getBoundingClientRect().height);
 await rendreScene("site", "siteAt", 4.5, path.join(tmp, "site.mp4"), hauteur);
-await rendreScene("fin", "finAt", 6, path.join(tmp, "fin.mp4"));
+await rendreScene("fin", "finAt", 7, path.join(tmp, "fin.mp4"));
 
 // 3. Légendes : PNG transparents
 await page.evaluate(() => window.montrer("legende"));
@@ -115,7 +115,27 @@ SEG.forEach(([f, d, l], i) => {
 entrees.push("-i", path.join(dir, "../pub-motion/musique.mp3"));
 const msM = Math.round(mDebut * 1000);
 filtres.push(`[${nIn}:a]volume=0.6,afade=t=in:d=1.2,adelay=${msM}|${msM}[mus]`);
-filtres.push(`${audios.join("")}[mus]amix=inputs=${audios.length + 1}:duration=longest:normalize=0,atrim=0:${DUREE},afade=t=out:st=${DUREE - 1.8}:d=1.8,alimiter=limit=0.95[a]`);
+// Voix off Gemini (sources/voix-koffi-gemini.m4a) : chaque phrase est placée sur son sous-titre.
+// [début dans l'enregistrement, fin, position dans la pub] — repérés aux silences de l'enregistrement.
+const VOIX = [
+  [7.10, 10.45, 0.7],   // « À Abidjan, Koffi se bat… »
+  [11.02, 13.20, 4.4],  // « Mais en ligne… personne ne le trouve. »
+  [13.90, 16.38, 9.0],  // « Un soir, il découvre Hortan Intelligence Plus. »
+  [17.00, 19.85, 19.6], // « Quelques jours plus tard… et les commandes arrivent. »
+  [20.50, 22.55, 26.2], // « Son commerce passe à la vitesse supérieure. »
+  [23.20, 28.80, 32.3], // « Hortan Intelligence Plus. Votre activité… Devis gratuit sur WhatsApp. »
+];
+const kVoix = nIn + 1;
+entrees.push("-i", path.join(dir, "sources/voix-koffi-gemini.m4a"));
+VOIX.forEach(([a, b, at], i) => {
+  const ms = Math.round(at * 1000);
+  filtres.push(`[${kVoix}:a]atrim=${a}:${b},asetpts=PTS-STARTPTS,aformat=sample_rates=48000:channel_layouts=stereo,afade=t=in:d=0.05,afade=t=out:st=${(b - a - 0.08).toFixed(2)}:d=0.08,adelay=${ms}|${ms}[vx${i}]`);
+});
+filtres.push(`${VOIX.map((_, i) => `[vx${i}]`).join("")}amix=inputs=${VOIX.length}:duration=longest:normalize=0,loudnorm=I=-16:TP=-1.5:LRA=11,aresample=48000,apad,asplit[voix][cle]`);
+filtres.push(`${audios.join("")}[mus]amix=inputs=${audios.length + 1}:duration=longest:normalize=0[fond0]`);
+// La musique et l'ambiance baissent quand la voix parle
+filtres.push(`[fond0][cle]sidechaincompress=threshold=0.03:ratio=7:attack=20:release=450[fond]`);
+filtres.push(`[voix][fond]amix=inputs=2:duration=longest:normalize=0,atrim=0:${DUREE},afade=t=out:st=${DUREE - 0.8}:d=0.8,alimiter=limit=0.95[a]`);
 
 await run([...entrees, "-filter_complex", filtres.join(";"), "-map", `[${prec}]`, "-map", "[a]",
   "-t", String(DUREE), "-c:v", "libx264", "-preset", "slow", "-crf", "19", "-c:a", "aac", "-b:a", "192k",
